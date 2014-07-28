@@ -21,6 +21,7 @@ library(stringr)
 library(ggplot2)
 library(lme4)
 library(bootstrap)
+library(xtable)
 theme_set(theme_bw())
 ```
 
@@ -381,3 +382,56 @@ msta <- ddply(mst, .(age.group), summarise,
       num.trials = mean(max.trial))
 xtable(msta)
 ```
+
+Reliability
+----
+
+```{r}
+library(dplyr)
+library(directlabels)
+bytrial <- tab %>%
+  select(subject.id,trial.type,trial.number,response,age,age.group) %>%
+  mutate(age.group = factor(age.group)) %>%
+  group_by(age.group,trial.type,trial.number,subject.id) %>%
+  arrange(trial.number) %>%
+  summarise(correct = sum(response=="Y")/sum(response=="Y" | response=="N")) %>%
+  summarise_each(funs(mean,ci.high,ci.low),correct) %>%
+  mutate(trial.order = 1:length(trial.number))
+```
+
+Version 1: Continuous
+
+```{r}
+ggplot(bytrial,aes(x = trial.order,y = mean, colour=age.group,fill=age.group)) + 
+  facet_grid(~ trial.type) +
+  geom_ribbon(aes(ymin = mean-ci.low,
+                  ymax = mean+ci.high),
+              alpha = .3, linetype = 0)+
+  geom_line(size=.8) +
+  geom_hline(aes(yintercept=.5),lty=2)  +
+  scale_x_continuous(name = "Trial") + 
+  scale_y_continuous(breaks=c(0,.25,.5,.75,1),
+                     name = "Prop. Looks to Target")
+```
+
+Version 2: Split Half
+
+```{r}
+byhalf <- bytrial %>%
+  mutate(first.half = factor((trial.order <= (length(trial.order)/2)),
+                             levels=c("TRUE","FALSE")),
+         correct = mean) %>%
+  group_by(age.group,trial.type,first.half,add=FALSE) %>%
+  summarise_each(funs(mean,ci.high,ci.low),correct)
+
+ggplot(byhalf,aes(x = age.group,y = mean, colour=first.half)) + 
+  facet_grid( ~ trial.type) +
+  geom_pointrange(aes(ymin = mean-ci.low,
+                  ymax = mean+ci.high),position = position_dodge(.1)) +
+  geom_hline(aes(yintercept=.5),lty=2)  +
+  #scale_x_continuous(name = "Trial") + 
+  scale_y_continuous(breaks=c(0,.25,.5,.75,1),
+                     name = "Prop. Looks to Target")
+```
+
+Version 3: Spearman-Brown Prophecy Function
