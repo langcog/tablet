@@ -1,0 +1,17 @@
+MWE for weird error
+====
+
+```{r}
+library(plyr)
+
+tab <- read.csv("~/Projects/tablet_norming/data/tabletstudyresults.csv")
+
+mssi <- ddply(tab, .(subject.id, trial.type, word), summarise,
+      correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
+
+msi <- ddply(mssi, .(trial.type, word), summarise, 
+            acc=mean(correct)) 
+
+msi$word <- reorder(msi$word, msi$correct)
+
+```

@@ -1,0 +1,52 @@
+experimenter,location,study_name,subject.id,DOT,DOB,age_group,list,gender,notes
+Elise,CDM,TAB_COMP_I,71114-1,7/11/2014,4/9/2011,3.257534247,1,M,(PILOT) smooth; required a little bit of coaxing but finished the study
+Elise,CDM,TAB_COMP_I,71114-2,7/11/2014,10/24/2011,2.715068493,1,M,(PILOT) smooth
+Eric,CDM,TAB_COMP_I,71114-3,7/11/2014,7/2/2012,2.024657534,1,M,"(PILOT) distracted, continual clicking"
+Eric,CDM,TAB_COMP_I,71114-4,7/11/2014,11/23/2009,4.632876712,1,F,(PILOT) smooth
+Eric,CDM,TAB_COMP_I,71114-5,7/11/2014,10/8/2012,1.756164384,1,F,"(PILOT) distracted, long pauses"
+Elise,CDM,TAB_COMP_I,71414-1,7/14/2014,3/4/2011,3.364383562,1,M,
+Elise,CDM,TAB_COMP_I,71414-2,7/14/2014,7/25/2012,1.969863014,1,F,parent helped a lot to minimize clicks that are too early; sometimes repeated stimuli
+Elise,CDM,TAB_COMP_I,71414-3,7/14/2014,11/6/2010,3.687671233,1,M,
+Elise,CDM,TAB_COMP_I,71414-4,7/14/2014,5/20/2010,4.153424658,1,F,
+Elise,CDM,TAB_COMP_I,71414-5,7/14/2014,7/30/2010,3.95890411,1,F,
+Elise,CDM,TAB_COMP_I,71414-6,7/14/2014,8/11/2011,2.926027397,1,M,"exclude?? good amount of parent interference, who seemed to be translating; only hears English 25% of the time"
+Elise,CDM,TAB_COMP_I,71414-7,7/14/2014,12/17/2008,5.575342466,1,F,"EXCLUDE -> too old, and no video"
+Elise,CDM,TAB_COMP_I,71414-8,7/14/2014,10/23/2010,3.726027397,1,F,
+Elise,CDM,TAB_COMP_I,71414-9,7/14/2014,9/25/2011,2.802739726,1,M,occassional parental praise
+Elise,CDM,TAB_COMP_I,71514-1,7/15/2014,7/27/2011,2.969863014,1,F,
+Elise,CDM,TAB_COMP_I,71514-2,7/15/2014,6/18/2010,4.076712329,1,F,
+Elise,CDM,TAB_COMP_I,71514-3,7/15/2014,2/8/2010,4.432876712,2,M,
+Elise,CDM,TAB_COMP_I,71514-4,7/15/2014,6/19/2012,2.071232877,1,F,almost made it through
+Elise,CDM,TAB_COMP_I,71514-5,7/15/2014,12/27/2012,1.547945205,1,M,
+Elise,CDM,TAB_COMP_I,71514-6,7/15/2014,10/9/2011,2.767123288,1,M,
+Elise,CDM,TAB_COMP_I,71514-7,7/15/2014,7/17/2012,1.994520548,2,F,mom played dot game to coax child into participating
+Elise,CDM,TAB_COMP_I,71514-8,7/15/2014,5/4/2010,4.2,2,M,
+Elise,CDM,TAB_COMP_I,71514-9,7/15/2014,10/24/2011,2.726027397,2,M,
+Elise,CDM,TAB_COMP_I,"""No data""",,,,,,"child's parent did not want to give video consent, but child still wanted to play the game"
+,,,"""No data""",,,,,,older children wanted to see the game
+Elise,CDM,TAB_COMP_I,71514-10,7/15/2014,5/16/2011,3.167123288,2,M,"misclick on ""kreeb"""
+Andrew,CDM,TAB_COMP_I,71614-1,7/16/2014,1/26/2011,3.471232877,2,M,
+Andrew,CDM,TAB_COMP_I,71614-2,7/16/2014,2/10/2010,4.430136986,2,F,
+Andrew,CDM,TAB_COMP_I,71614-3,7/16/2014,3/28/2012,2.301369863,2,F,
+Andrew,CDM,TAB_COMP_I,71614-4,7/16/2014,6/30/2011,3.046575342,2,M,attempted to click one without listening first
+Andrew,CDM,TAB_COMP_I,71614-5,7/16/2014,8/4/2009,4.950684932,2,F,EXCLUDE -> too old
+Andrew,CDM,TAB_COMP_I,71614-6,7/16/2014,11/11/2010,3.679452055,2,F,
+Andrew,CDM,TAB_COMP_I,71614-7,7/16/2014,1/10/2011,3.515068493,2,M,
+Andrew,CDM,TAB_COMP_I,71614-8,7/16/2014,9/11/2012,1.843835616,2,F,"mom had to coax a lot, and praised occasionally"
+Andrew,CDM,TAB_COMP_I,71614-9,7/16/2014,5/11/2010,4.183561644,2,M,Accidentally entered as 71614-8 instead of 71614-9 (3:10-3:15PM)
+Andrew,CDM,TAB_COMP_I,71614-10,7/16/2014,11/4/2010,3.698630137,2,F,
+Andrew,CDM,TAB_COMP_I,71614-11,7/16/2014,8/12/2012,1.926027397,2,M,"EXCLUDE -> many many reasons: sibling interference, lack of attention/understanding of the rules. Basically the Platonic Ideal of data that needs to be excluded"
+Andrew,CDM,TAB_COMP_I,72014-1,7/20/2014,8/28/2010,3.895890411,2,M,"disregard trial around 12:06, children could not complete past dot game"
+Andrew,CDM,TAB_COMP_I,72014-2,7/20/2014,10/10/2010,3.778082192,2,F,dad played part of dot game to coax child into participating
+Andrew,CDM,TAB_COMP_I,72014-3,7/20/2014,5/4/2012,2.210958904,2,F,"mom had to repeat many words, occasionally praised"
+Andrew,CDM,TAB_COMP_I,72014-4,7/20/2014,9/2/2010,3.882191781,1,M,mom said child received speech therapy from 18 months to age 2
+Andrew,CDM,TAB_COMP_I,72014-5,7/20/2014,1/24/2011,3.487671233,1,M,
+Andrew,CDM,TAB_COMP_I,72014-6,7/20/2014,8/16/2010,3.928767123,2,M,
+Andrew,CDM,TAB_COMP_I,72014-7,7/20/2014,3/21/2012,2.331506849,2,M,"Disregard first 72014-7, as there was no video and child couldn't complete; actual 72014-7 picked 1-2 before hearing word and had 1 misclick"
+Andrew,CDM,TAB_COMP_I,72014-8,7/20/2014,5/3/2011,3.216438356,2,M,Father praised twice
+,,,,,,,,,
+,,,,,,,,,
+,,,,list 1,list 2,,,,
+,,,1.5-2.5,3,5,,,,
+,,,2.5-3.5,6,5,,,,
+,,,3.5-4.5,6,9,,,,
