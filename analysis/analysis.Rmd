@@ -139,7 +139,7 @@ msa <- ddply(mss, .(trial.type, age.group), summarise,
             acc.cil=ci.low(correct)) 
 
 levels(msa$trial.type) <- c("Familiar Word","ME Control","ME Inference")
-pdf("~/Projects/tablet_norming/writeup/figures/accuracy.pdf",width=5,height=3)
+# pdf("~/Projects/tablet_norming/writeup/figures/accuracy.pdf",width=5,height=3)
 qplot(age.group, acc,
       fill=trial.type,
       ymin=acc-acc.cil,
@@ -152,12 +152,13 @@ qplot(age.group, acc,
   ylab("Accuracy") + 
   scale_fill_discrete(name="Trial Type") + 
   geom_hline(yintercept=.5,lty=2)
+# dev.off()
 ```
 
 and RT:
 
 ```{r}
-pdf("~/Projects/tablet_norming/writeup/figures/rt.pdf",width=5,height=3)
+# pdf("~/Projects/tablet_norming/writeup/figures/rt.pdf",width=5,height=3)
 qplot(age.group, rt/1000,
       fill=trial.type,
       ymin=rt/1000-rt.cil/1000,
@@ -169,7 +170,7 @@ qplot(age.group, rt/1000,
   xlab("Age (Years)") + 
   ylab("Reaction Time (s)") + 
   scale_fill_discrete(name="Trial Type") 
-dev.off()
+# dev.off()
 
 ```
 
@@ -213,7 +214,7 @@ qplot(age,correct, col=trial.type.simple,
 and RT
 
 ```{r}
-pdf("~/Projects/tablet_norming/writeup/figures/individuals.pdf",width=5,height=3)
+# pdf("~/Projects/tablet_norming/writeup/figures/individuals.pdf",width=5,height=3)
 qplot(age, rt/1000, geom="pointrange",
       ymin=rt/1000-rt.cil/1000,
       ymax=rt/1000+rt.cih/1000,
@@ -222,7 +223,7 @@ qplot(age, rt/1000, geom="pointrange",
   ylab("Reaction Time (s)") +
   xlab("Age Group (Years)") + 
   geom_smooth()
-dev.off()
+# dev.off()
 ```
 
 RT
@@ -379,5 +380,5 @@ mst <- ddply(tab, .(subject.id,age.group), summarise,
 msta <- ddply(mst, .(age.group), summarise,
       finished = mean(max.trial==28), 
       num.trials = mean(max.trial))
-xtable(msta)
+# xtable(msta)
 ```
