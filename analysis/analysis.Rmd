@@ -16,11 +16,18 @@ ci.low <- function(x,na.rm=T) {
   mean(x,na.rm=na.rm) - quantile(bootstrap(1:length(x),1000,theta,x,na.rm=na.rm)$thetastar,.025,na.rm=na.rm)}
 ci.high <- function(x,na.rm=T) {
   quantile(bootstrap(1:length(x),1000,theta,x,na.rm=na.rm)$thetastar,.975,na.rm=na.rm) - mean(x,na.rm=na.rm)}
+
+na.mean <- function(x) {mean(x,na.rm=T)}
+na.sum <- function(x) {sum(x,na.rm=T)}
+na.median <- function(x) {median(x,na.rm=T)}
+na.cor <- function(x) {cor(x,na.rm=T)}
+
 library(plyr)
 library(stringr)
 library(ggplot2)
 library(lme4)
 library(bootstrap)
+library(xtable)
 theme_set(theme_bw())
 ```
 
@@ -381,4 +388,52 @@ msta <- ddply(mst, .(age.group), summarise,
       finished = mean(max.trial==28), 
       num.trials = mean(max.trial))
 # xtable(msta)
+```
+
+Reliability
+----
+
+```{r}
+library(dplyr)
+bytrial <- tab %>%
+  select(subject.id,trial.type,trial.number,acc,reaction.time) %>%
+  group_by(trial.type,subject.id) %>%
+  arrange(trial.number) %>%
+  mutate(trial.order = 1:length(trial.number),
+    first.half = factor((trial.order <= (length(trial.order)/2)),
+                             levels=c("TRUE","FALSE")),
+    even.half = factor(trial.order %% 2 == 0,
+                             levels=c("TRUE","FALSE")))
+
+split.half.trials <- bytrial %>%
+  group_by(first.half,add=TRUE) %>%
+  summarise(acc = mean(acc),
+            rt = na.median(reaction.time))
+split.half.trials <- reshape(split.half.trials,idvar = c("subject.id","trial.type"),
+                             timevar = "first.half", direction="wide")
+
+
+even.half.trials <- bytrial %>%
+  group_by(even.half,add=TRUE) %>%
+  summarise(acc = mean(acc),
+            rt = na.median(reaction.time))
+even.half.trials <- reshape(even.half.trials,idvar = c("subject.id","trial.type"),
+                             timevar = "even.half", direction="wide")
+
+```
+
+``` {r}
+split.half.bytype <- split.half.trials %>%
+  group_by(trial.type) %>%
+  summarise(acc.corr = cor(acc.TRUE,acc.FALSE,use="complete.obs"),
+            rt.corr = cor(rt.TRUE,rt.FALSE,use="complete.obs"))
+
+print(split.half.bytype)
+
+even.half.bytype <- even.half.trials %>%
+  group_by(trial.type) %>%
+  summarise(acc.corr = cor(acc.TRUE,acc.FALSE,use="complete.obs"),
+            rt.corr = cor(rt.TRUE,rt.FALSE,use="complete.obs"))
+
+print(even.half.bytype)
 ```

@@ -28,6 +28,7 @@ function [] = make_stims(file)
     end
     
     stims = readtable(file);
+    stims
     
     for row = 1:height(stims)
         make_stim(stims{row,1}{:},stims{row,2}{:},'black');
