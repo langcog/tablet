@@ -16,6 +16,12 @@ ci.low <- function(x,na.rm=T) {
   mean(x,na.rm=na.rm) - quantile(bootstrap(1:length(x),1000,theta,x,na.rm=na.rm)$thetastar,.025,na.rm=na.rm)}
 ci.high <- function(x,na.rm=T) {
   quantile(bootstrap(1:length(x),1000,theta,x,na.rm=na.rm)$thetastar,.975,na.rm=na.rm) - mean(x,na.rm=na.rm)}
+
+na.mean <- function(x) {mean(x,na.rm=T)}
+na.sum <- function(x) {sum(x,na.rm=T)}
+na.median <- function(x) {median(x,na.rm=T)}
+na.cor <- function(x) {cor(x,na.rm=T)}
+
 library(plyr)
 library(stringr)
 library(ggplot2)
@@ -388,50 +394,44 @@ Reliability
 
 ```{r}
 library(dplyr)
-library(directlabels)
 bytrial <- tab %>%
-  select(subject.id,trial.type,trial.number,response,age,age.group) %>%
-  mutate(age.group = factor(age.group)) %>%
-  group_by(age.group,trial.type,trial.number,subject.id) %>%
+  select(subject.id,trial.type,trial.number,acc,reaction.time) %>%
+  group_by(trial.type,subject.id) %>%
   arrange(trial.number) %>%
-  summarise(correct = sum(response=="Y")/sum(response=="Y" | response=="N")) %>%
-  summarise_each(funs(mean,ci.high,ci.low),correct) %>%
-  mutate(trial.order = 1:length(trial.number))
-```
-
-Version 1: Continuous
-
-```{r}
-ggplot(bytrial,aes(x = trial.order,y = mean, colour=age.group,fill=age.group)) + 
-  facet_grid(~ trial.type) +
-  geom_ribbon(aes(ymin = mean-ci.low,
-                  ymax = mean+ci.high),
-              alpha = .3, linetype = 0)+
-  geom_line(size=.8) +
-  geom_hline(aes(yintercept=.5),lty=2)  +
-  scale_x_continuous(name = "Trial") + 
-  scale_y_continuous(breaks=c(0,.25,.5,.75,1),
-                     name = "Prop. Looks to Target")
-```
-
-Version 2: Split Half
-
-```{r}
-byhalf <- bytrial %>%
-  mutate(first.half = factor((trial.order <= (length(trial.order)/2)),
+  mutate(trial.order = 1:length(trial.number),
+    first.half = factor((trial.order <= (length(trial.order)/2)),
                              levels=c("TRUE","FALSE")),
-         correct = mean) %>%
-  group_by(age.group,trial.type,first.half,add=FALSE) %>%
-  summarise_each(funs(mean,ci.high,ci.low),correct)
+    even.half = factor(trial.order %% 2 == 0,
+                             levels=c("TRUE","FALSE")))
 
-ggplot(byhalf,aes(x = age.group,y = mean, colour=first.half)) + 
-  facet_grid( ~ trial.type) +
-  geom_pointrange(aes(ymin = mean-ci.low,
-                  ymax = mean+ci.high),position = position_dodge(.1)) +
-  geom_hline(aes(yintercept=.5),lty=2)  +
-  #scale_x_continuous(name = "Trial") + 
-  scale_y_continuous(breaks=c(0,.25,.5,.75,1),
-                     name = "Prop. Looks to Target")
+split.half.trials <- bytrial %>%
+  group_by(first.half,add=TRUE) %>%
+  summarise(acc = mean(acc),
+            rt = na.median(reaction.time))
+split.half.trials <- reshape(split.half.trials,idvar = c("subject.id","trial.type"),
+                             timevar = "first.half", direction="wide")
+
+
+even.half.trials <- bytrial %>%
+  group_by(even.half,add=TRUE) %>%
+  summarise(acc = mean(acc),
+            rt = na.median(reaction.time))
+even.half.trials <- reshape(even.half.trials,idvar = c("subject.id","trial.type"),
+                             timevar = "even.half", direction="wide")
+
 ```
+``` {r}
+split.half.bytype <- split.half.trials %>%
+  group_by(trial.type) %>%
+  summarise(acc.corr = cor(acc.TRUE,acc.FALSE,use="complete.obs"),
+            rt.corr = cor(rt.TRUE,rt.FALSE,use="complete.obs"))
 
-Version 3: Spearman-Brown Prophecy Function
+print(split.half.bytype)
+
+even.half.bytype <- even.half.trials %>%
+  group_by(trial.type) %>%
+  summarise(acc.corr = cor(acc.TRUE,acc.FALSE,use="complete.obs"),
+            rt.corr = cor(rt.TRUE,rt.FALSE,use="complete.obs"))
+
+print(even.half.bytype)
+```
