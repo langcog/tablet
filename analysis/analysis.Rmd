@@ -78,6 +78,13 @@ qplot(reaction.time/1000,
   geom_vline(xintercept=exp(m + 2*s)/1000, col="red",lty=2) + 
   scale_x_log10(breaks=c(1,2,5,10,20,50))
 
+mean(tab$reaction.time)
+median(tab$reaction.time)
+exp(m-(2*s))
+exp(m+(2*s))
+mean(tab$reaction.time > exp(m + 2*s) |
+                    tab$reaction.time < exp(m - 2*s))
+
 tab$reaction.time[tab$reaction.time > exp(m + 2*s) |
                     tab$reaction.time < exp(m - 2*s)] <- NA
 ```
@@ -366,17 +373,21 @@ Statisics
 ----
 
 ```{r}
-
+library(xtable)
 rt.mod <- lmer(reaction.time ~ trial.number + age * trial.type + 
        (trial.type | subject.id), 
      data=tab)
 summary(rt.mod)
+xtable(summary(rt.mod)$coef)
 
 tab$acc <- tab$response=="Y"
-acc.mod <- lmer(acc ~ trial.number + age * trial.type + 
+acc.mod <- lmer(acc ~ age.group * trial.type + 
        (trial.type | subject.id), 
+       family="binomial",
      data=tab)
 summary(acc.mod)
+xtable(summary(acc.mod)$coef)
+
 ```
 
 ```{r}

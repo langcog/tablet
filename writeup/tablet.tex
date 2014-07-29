@@ -50,7 +50,8 @@ And although children show interest and remarkable capabilities to use touch-scr
 
 \section{Collecting Developmental Data With Tablets}
 
-% \subsection{The Value of Tablet-Based Data Collection}
+\subsection{The value of tablet-based data collection}
+
 Researchers working with young children have access to a wide variety of experimental paradigms, ranging from behavioral forced-choice to eye-tracking and looking-time based measures \cite{aslin2007,gredeback2009}. Nevertheless, each of these methods has its drawbacks: behavioral methods are flexible and easy to implement, but they can be subject to experimenter biases, and often require labor-intensive offline coding. In contrast, corneal-reflection eye-tracking methods are precise and unbiased, allowing tight experimental control, but can be expensive and are difficult to implement outside of tightly-controlled lab settings. In addition, they are typically limited in length as they tend to be non-interactive.
 
 Tablet-based experimental paradigms can supplement both of these data collection modalities by allowing researchers to create engaging, interactive paradigms that are low cost but nevertheless offer some of the precision and experimental control of eye-tracking paradigms. In the sections below, we offer five reasons why tablets may be valuable tools for developmental research.
@@ -65,43 +66,49 @@ Tablet-based experimental paradigms can supplement both of these data collection
 
 \subsubsection{Scale} The low cost and high accessibility make it possible to distribute tablets to research assistants who can collect data in a wider variety of locations (though not without concern about environmental distractions). In addition, it is in principle possible that children could contribute data to experimental studies via experiments administered by their parents or caregivers.\footnote{For an example of this method, see \texttt{http://lookit.mit.edu}, a web-based platform for looking-time experiments that engages parents as experimental confederates.} It is this latter possibility that might be truly revolutionary in terms of the scope of data collection, though there are many challenges that such research would need to overcome.
 
-Despite all of these advantages, there are significant technical issues related to app creation that have slowed the adoption of tablet-based methods in developmental research.
+Despite all of these advantages, there are significant technical issues related to app creation that have slowed the adoption of tablet-based methods in developmental research. Creating tablet-native apps (that can be accessed through an Android or iOS tablet's main menu) requires substantial programming expertise---and worse yet, this expertise is not transferrable across tablet platforms. Developing a native app for iOS requires programming in Objective-C using Apple's proprietary app development tools; in contrast, development for Android requires programming in a Java variant. Both languages have specific software development tools (SDKs) that allow programmers to tailor their apps for various devices. 
 
-reating iPad apps requires mastering a framework and programming language that are specific to iOS, and putting the apps on more than a few iPads requires dealing with the app store. Neither of these are impossible hurdles, but both of them have kept us (and AFAIK most other labs) from getting very far in using them for routine day-to-day data collection.
-
+There are certainly cases where having a robust, native app might lead to better performance or adoption. An experiment that requires substantial media or animation, use of the tablet's camera, or large-scale data transfer is likely to perform better as a natively written app. Similarly, standardized experimental tools are more easily distributed and used via Google Play or the Apple App Store, the standard distribution methods for commercial software. But the cost of developing such apps is substantial: either an investigator must learn a special-purpose programming language, or a programmer must be employed. This latter option is more common, but costs can easily run in the tens of thousands of dollars; in this sort of scenario, making scientifically-useful changes to an app may be undesirable because of added costs. 
 
 \subsection{A web-based method for developing tablet experiments}
 
-In contrast to these other methods, our recipe for experiment development is easy to use; makes use of free, industry-standard web development tools; does not require interaction with commercial app platforms; and  offers the ability to collect control data with adult participants on Amazon Mechanical Turk \cite{paolacci2010,crump2013} with virtually no changes. Our method has three components:
+In contrast to these costly, special-purpose methods, we describe an alternative method for prototyping and collecting data on tablets. The method relies on creating the experiment as a simple webpage and then showing this page in the tablet's web browser. This method still requires some programming experience, but much less; in addition, it draws on open-source, freely-available tools that are relatively easy to master. Experimental ``apps'' are easily shared, modified, and ported across platforms, leading to faster iteration and data collection. In addition, it offers the ability to collect control data with adult participants on Amazon Mechanical Turk \cite{paolacci2010,crump2013} with virtually no changes. Our method has three components:
 
 \begin{enumerate}
-\item A JavaScript/CSS/HTML web experiment, 
+\item A JavaScript/CSS/HTML web page, which is the core of the experiment, 
 \item A server-side PHP script to collect data in tabular format, and
-\item A tablet device running a kiosk application. 
+\item A tablet device running a kiosk application to present the experiment. 
 \end{enumerate}
 
 \noindent We discuss each below.\footnote{Our work has used the Apple iPad as the primary tablet platform and we provide details that are tailored for this platform. Nevertheless, and unlike other methods, our method is in principle portable to a wide range of mobile devices with only very minor modifications.}
 
 \subsubsection{Web-based experiment}
 
-It is beyond the scope of this article to provide an introduction to creating JavaScript-based web experiments, but there are a wealth of available resources on this topic. These resources include both psychology-specific tutorials and more general introductions to the document-object model that has recently become the standard framework for constructing websites. A sample experiment (as well as the server side code) is provided in the version control repository for this paper (\texttt{http://github.com/langcog/tablet\textunderscore norming}). Hosting a web-based experiment requires server space, which is often provided by universities but can also be purchased from commercial providers. We find that the requirements on such a server are typically not high so the costs involved are minimal.
+The first component of our system is a web-based experiment created using HTML, JavaScript, and CSS. This combination is currently the most common set of tools for the creation of interactive websites. HTML (HyperText Markup Language) forms the framework for the static content shown on the website, while CSS (Cascading Style Sheets) gives a consistent set of formatting options. JavaScript then controls the interaction functionality of the website. In particular, we make use of a JavaScript library called jQuery (\texttt{http://jquery.com}) that allows HTML elements like images, layouts, text, and media to be dynamically added, subtracted, and rearranged as participants interact with the resulting page. 
+
+It is beyond the scope of this article to provide an introduction to creating JavaScript-based web experiments, but there are a wealth of available resources on this topic. These resources include both psychology-specific tutorials and more general introductions to the general HTML/JavaScript/CSS model. A sample experiment (as well as the server side code) is provided in the version control repository for this paper (\texttt{http://github.com/langcog/tablet\textunderscore norming}). 
+
+Hosting a web-based experiment requires server space, which is often provided by universities but can also be purchased from commercial providers. We find that the requirements on such a server are typically not high, so the costs involved are minimal.
+
+
 
  % there is a lot of good material out there, especially from the Gureckis Lab at NYU (e.g. this blog post). There are also many tools for learning how to make websites using the now standard combo of JavaScript, HTML, CSS, and jQuery. Note that putting up such an experiment will require some server space. We use the space provided by Stanford for our standard university web pages, but all that's required is somewhere to put your HTML, JS, and CSS files.
 
 \subsubsection{Server-side data collection}
 
-A second requirement is a simple script that runs on a server (probably the same one that you are using to serve the experiment). The function of this script is to save data from the experiment to a location on the server.
+The second component of our system is a simple script that allows the experiment to save data in tabular format. Every time a participant completes the experiment, their data is sent to this script, written in a language called PHP (a simple scripting language that is often used for backend web development). The script simply appends data from the experiment to a tabular data file. The script can be hosted on any web-accessible server that has been configured to run executable files of this type. In practice, this will often be the same server that hosts the experiment itself, though it need not be. Data are then retrieved from this server periodically using SFTP (Secure File Transfer Protocol). 
 
 \subsubsection{Tablet configuration}
 
-Our method requires that the tablet be connected to the internet. This is perhaps the most substantial drawback of our method. The tablet must either have wireless access (e.g., from the testing location or a mobile hotspot device) or else the tablet itself must have cellular connectivity. Once the tablet has access to the web, the tablet's browser can simply be directed to the experiment website. A major challenge of presenting experiments in the tablet's web browser is to ensure that children cannot accidentally or intentionally navigate away from the experiment, exit the browser, or change perspective (e.g. by zooming).
-In practice, we use two tools for this purpose: the first is Guided Access, a mode on the iPad that disables the hardware buttons. The second is Mobile Kiosk, an app that further locks the iPad into a particular view of a webpage. The combination ensures that the tablet presents the experiment as intended.
+The third component of our system is an internet-connected tablet. The requirement for internet connectivity is perhaps the most substantial drawback of our method, relative to native apps. The tablet must either have wireless access (e.g., from the testing location or a mobile hotspot device) or else the tablet itself must have cellular connectivity. Once the tablet has access to the web, the tablet's browser can simply be directed to the experiment website. 
 
-
+A major challenge of presenting experiments in the tablet's web browser is to ensure that children cannot accidentally or intentionally navigate away from the experiment, exit the browser, or change perspective (e.g. by zooming). In practice, we use two tools for this purpose: the first is Guided Access, a mode on the iPad that disables the hardware buttons. The second is Mobile Kiosk, an app that further locks the iPad into a particular view of a webpage. The combination ensures that the tablet presents the experiment as intended. With both of these systems in place, the ``look'' of the experiment is extremely similar to a native app. 
 
 \section{Norming Data}
  
-To test the reliability and broad developmental applicability of our tablet method, we implemented a simple word-recognition paradigm, which we tested with a cross-sectional sample of children ages 1--5, recruited from a local children's museum. The basis of our experiment was work on the developing speed and accuracy of word recognition by Anne Fernald and colleagues \cite{fernald1998,fernald2002,bion2012}. We designed a two-alternative forced choice paradigm that both tested children's recognition of familiar words and asked them to make so-called ``mutual exclusivity'' inferences---that a novel label refers to a novel word rather than a familiar competitor \cite{markman1989}. While the causes of this latter inference are still a source of disagreement \cite{markman2003,diesendruck2003,frank2009,bion2012}, it is nevertheless a highly replicable finding that we predicted woud show substantial developmental change across our sample.  We were thus interested in measuring developmental changes in both accuracy and reaction time, both in recognizing familiar words and in making inferences about novel words. 
+To test the reliability and broad developmental applicability of our tablet method, we implemented a simple word-recognition paradigm, which we tested with a cross-sectional sample of children ages 1--5 from a local children's museum. The basis of our experiment was work on the developing speed and accuracy of word recognition by Anne Fernald and colleagues \cite{fernald1998,fernald2006,bion2013}. 
+
+We designed a two-alternative forced choice paradigm that both tested children's recognition of familiar words and asked them to make so-called ``mutual exclusivity'' inferences---that a novel label refers to a novel word rather than a familiar competitor \cite{markman1988}. While the causes of this latter inference are still a source of theoretical disagreement \cite{markman2003,diesendruck2001,frank2009,bion2013}, it is nevertheless a highly replicable finding that we predicted woud show substantial developmental change across our sample.  We were thus interested in measuring developmental changes in both accuracy and reaction time, both in recognizing familiar words and in making inferences about novel words. 
 
 \subsection{Methods}
 
@@ -115,20 +122,14 @@ Visual stimuli consisted of images of sixteen familiar and eight novel objects. 
 
 \subsubsection{Procedure}
 
-We created a simple page training with a set of dots for a child to tap - they can't advance until they successfully tap all the dots (kind of like Whac-A-Mole).
+We created a simple page to help children learn to tap appropriately on the iPad. To advance past this training page, they needed to tap a set of five dots in random locations; each dot transformed into an ``X'' when tapped. After the child tapped all the dots, the experimenter could either advance the app to the experiment or rerun the training if they felt the child could use more practice. 
 
-Experimental stimuli were presented in one of two pseudorandom lists, in which trials (which contained a pair of pictures) were counterbalanced for order, target side, and XYZ. The experiment had 28 trials in total (8 of each trial type plus four fillers). 
-
-Trial types
+Experimental stimuli were then presented in one of two pseudorandom lists, in which trials (which contained a pair of pictures) were counterbalanced for order, target side, and XYZ. The experiment had 28 trials in total (8 of each of three trial type plus four fillers). The three trial types were \emph{Familiar Word} trials, in which two familiar pictures were presented and children were asked to select the image that matched a familiar word; \emph{ME Control} trials, in which a familiar and a novel image were presented and children were asked to select the image that matched a familiar word; and \emph{ME Inference} trials, in which a familiar and a novel image were presented and children were asked to select the image that matched a novel word. 
 
 \subsection{Results}
 
 % \subsubsection{Task completion}
 
-Children were enthusiastic about the experiment, even though it contained a substantial number of trials. One-year-olds varied in their ability to complete the study, while ll other groups successfully completed the experiment at high rates. Completion rate and average number of trials completed are given in Table \ref{tab:completion}.
-
-% latex table generated in R 3.0.2 by xtable 1.7-3 package
-% Sun Jul 27 12:01:53 2014
 \begin{table}[t]
 \centering
 \caption{Proportion children finishing the study and average number of trials out of 28 completed for all children, by age group.\label{tab:completion}}
@@ -145,8 +146,7 @@ Age group & Proportion finishing & Average number of trials \\
 \end{tabular}
 \end{table}
 
-\subsubsection{Accuracies}
-
+Children were enthusiastic about the experiment, even though it contained a substantial number of trials. One-year-olds varied in their ability to complete the study, with most completing half or two thirds but not the full 28 trials. In contrast, the other groups successfully completed the experiment at high rates. Completion rate and average number of trials completed are given in Table \ref{tab:completion}.
 
 \begin{figure}[t] 
   \begin{center} 
@@ -155,7 +155,10 @@ Age group & Proportion finishing & Average number of trials \\
   \end{center} 
 \end{figure}
 
-\subsubsection{Reaction times}
+Accuracies for familiar word trials were above chance even for the one-year-old age group and rapidly approached ceiling performance in the two-year-olds (Figure \ref{fig:accuracy}). There were also no substantive differences in accuracy between Familiar Word and ME control trials. In contrast, ME Inference trials were substantially more difficult for children, with one-year-olds performing at chance, and two-year-olds showing a substantial decrement in performance for these trials. 
+
+We fit a logistic mixed effects model with a maximal random effects structure \cite{barr2013} to the data. To make inferences about differences between age groups, we coded age group as a discrete factor.  We found significant main effects of age ($\beta = $, $p = $) and ME inference trials ($\beta = $, $p = $), but no effect of ME control trials ($\beta = $, $p = $). We additionally ...
+
 
 \begin{figure}[t] 
   \begin{center} 
@@ -164,19 +167,30 @@ Age group & Proportion finishing & Average number of trials \\
   \end{center} 
 \end{figure}
 
+We next turned to reaction time data. Our reaction time data had a mean of XYZ but a median of only XYZ. This difference indicates a standard skewed distribution; in addition, the distribution contained a number of extreme outliers from trials where children asked for clarification, refused to choose, or simply became distracted. We removed outliers using a preset criterion of 2 standard deviations above or below the mean, computed in log space (lower threshold: XYZ ms, upper threshold: XYZ ms). This procedure removed XYZ\% of the data (around 1.XYZ trials of 28 per child). 
+
+Reaction times showed both developmental and trial-by-trial effects. Older children were substantially faster at our task, and ME inference trials were slower than both Familiar Word and ME Control trials. Again, we did not observe large numerical differences between Familiar Word and ME Control trials.
+
+We fit a linear mixed effects model to our reaction-time data. 
 
 \begin{figure}[t] 
   \begin{center} 
     \includegraphics[width=5in]{figures/individuals.pdf} 
-    \caption{\label{fig:rt} Reaction times for familiar word recognition (both Familiar and ME control trials), plotted by age. Each dot represents an individual. Error bars show 95\% confidence intervals on individual RTs, computed by non-parametric bootstrap. The smoothing line is a loess non-parametric regression line with a 95\% confidence interval.}
+    \caption{\label{fig:rt2} Reaction times for familiar word recognition (both Familiar and ME control trials), plotted by age. Each dot represents an individual. Error bars show 95\% confidence intervals on individual RTs, computed by non-parametric bootstrap. The smoothing line is a loess non-parametric regression line with a 95\% confidence interval.}
   \end{center} 
 \end{figure}
 
+One primary concern for our study was the individual reliability of reaction time data. Group-level developmental differences such as those described above do not necessarily signal a measure with high reliability. We approach this question in several ways. First, we show individuals' reaction-time data plotted in Figure \ref{fig:rt2}, with confidence intervals for each. Confidence intervals are broad for the youngest children, but are relatively tight for the older children in our group. 
 
-\subsubsection{Reliabilities}
+Next, we used the congruence between Familiar Word and ME Control trials to compute split-half reliability. FILL ME IN. 
 
 \section{Conclusions} 
 
+Mobile and tablet-based computers are quickly becoming a ubiquitous part of life---and of childhood. Children play with their parents' and their own devices, and such devices are used for education, reading, games, and video chat with friends and relatives. Many important developmental issues are raised by this ubiquity, and more research must be done to determine how, when, and what children can learn from different kinds of devices. Nevertheless, the opportunity posed by such devices for developmental psychologists is immense.
+
+We presented a simple method for creating tablet ``apps'' that allows experimenters to create basic websites and use these websites to collect data on tablets. This method is substantially easier and more flexible than platform-native app development, which can be costly and time-consuming. In addition, it allows cross-platform compatibility and easy sharing for the resulting experiments. We showed in a simple word recognition experiment that this method yields reliable reaction time and accuracy data for children as young as two years of age. Data collection using tablets thus has the potential to supplement and perhaps even supplant many behavioral assessment methods currently in use. 
+
+\newpage
 
 \bibliographystyle{apacite}
 \bibliography{tablet}
