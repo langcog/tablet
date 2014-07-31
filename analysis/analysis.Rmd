@@ -39,60 +39,81 @@ tab$reaction.time <- as.numeric(as.character(tab$reaction.time))
 tab$trial.type <- factor(tab$trial.type, c("rec","MEcontrol","MEexperimental"))
 ```
 
-Now exclude test subjects from the tablet...
-
-```{r}
-tab <- subset(tab, subject.id %in% 
-                levels(tab$subject.id)[grepl("-",
-                                             as.character(levels(tab$subject.id)))] &
-                 trial.type != "filler")
-```
-
 Now add demographics.
 
 ```{r}
 demo <- read.csv("~/Projects/tablet_norming/data/tablet_demographics.csv")
 demo$age.group <- floor(demo$age)
-tab <- merge(tab, demo)
-
-tab <- subset(tab, exclude==0)
+sum(demo$exclude)
+aggregate(subject.id ~ exclusion.crit, demo, length)
 ```
 
-Look at age distribution.
+Merge, remove exclusions and fillers, and look at age distribution.
 
 ```{r}
-qplot(age.group, 
-  data=subset(demo,exclude==0))
+d <- merge(tab, demo)
+d <- subset(d, exclude == 0)
+d <- subset(d, trial.type != "filler")
 ```
 
-Reaction time distribution. Based on this plot, we prune at +/- 2SDs in log space (red lines). 
+Reaction time distribution. Based on this plot, we prune at +/- 2SDs in log space (red lines). We also remove incorrect trials.
 
 ```{r}
-m <- mean(log(tab$reaction.time)) 
-s <- sd(log(tab$reaction.time))
+d$reaction.time[d$response=="N"] <- NA # start by removing 
+
+m <- mean(log(d$reaction.time)) 
+s <- sd(log(d$reaction.time))
 
 qplot(reaction.time/1000,
-      data=tab) + 
+      data=d) + 
   geom_vline(xintercept=exp(m - 2*s)/1000, col="red",lty=2) + 
   geom_vline(xintercept=exp(m + 2*s)/1000, col="red",lty=2) + 
   scale_x_log10(breaks=c(1,2,5,10,20,50))
 
-mean(tab$reaction.time)
-median(tab$reaction.time)
+mean(d$reaction.time)
+median(d$reaction.time)
 exp(m-(2*s))
 exp(m+(2*s))
-mean(tab$reaction.time > exp(m + 2*s) |
-                    tab$reaction.time < exp(m - 2*s))
-
-tab$reaction.time[tab$reaction.time > exp(m + 2*s) |
-                    tab$reaction.time < exp(m - 2*s)] <- NA
+mean(d$reaction.time > exp(m + 2*s) |
+       d$reaction.time < exp(m - 2*s))
 ```
+
+Do the pruning here.
+
+```{r}
+d$reaction.time[d$reaction.time > exp(m + 2*s) |
+                    d$reaction.time < exp(m - 2*s)] <- NA
+```
+
 
 How many participants do we have? 
 
 ```{r}
-length(unique(tab$subject.id))
+print(length(unique(d$subject.id)))
+
+dems <- ddply(d, .(age.group,subject.id), summarise,
+              age = age[1],
+              male = gender[1] == "M")
+dems <- ddply(dems, .(age.group), summarise,
+      n = length(subject.id),
+      m.age = mean(age),
+      m.male = mean(male))
+xtable(dems)
 ```
+
+Did they finish?
+
+```{r}
+d$trial.number <- as.numeric(as.character(d$trial.number))
+mst <- ddply(d, .(subject.id,age.group), summarise,
+             max.trial=max(trial.number))
+
+msta <- ddply(mst, .(age.group), summarise,
+              finished = mean(max.trial==28), 
+              num.trials = mean(max.trial))
+xtable(msta)
+```
+
 
 Actual analysis starts here
 ====
@@ -100,24 +121,24 @@ Actual analysis starts here
 Aggregation. 
 
 ```{r}
-mss <- ddply(tab, .(subject.id, trial.type, age.group), summarise,
-      RT=mean(reaction.time, na.rm=TRUE), 
-      correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
+mss <- ddply(d, .(subject.id, trial.type, age.group), summarise,
+             RT=mean(reaction.time, na.rm=TRUE), 
+             correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
 ```
 
 Accuracy:
 
 ```{r}
 msa <- ddply(mss, .(trial.type, age.group), summarise, 
-            rt=mean(RT,na.rm=TRUE), 
-            rt.cih=ci.high(RT),
-            rt.cil=ci.low(RT),
-            acc=mean(correct,na.rm=TRUE),
-            acc.cih=ci.high(correct),
-            acc.cil=ci.low(correct)) 
+             rt=mean(RT,na.rm=TRUE), 
+             rt.cih=ci.high(RT),
+             rt.cil=ci.low(RT),
+             acc=mean(correct,na.rm=TRUE),
+             acc.cih=ci.high(correct),
+             acc.cil=ci.low(correct)) 
 
 levels(msa$trial.type) <- c("Familiar Word","ME Control","ME Inference")
-# pdf("~/Projects/tablet_norming/writeup/figures/accuracy.pdf",width=5,height=3)
+# pdf("~/Projects/dlet_norming/writeup/figures/accuracy.pdf",width=5,height=3)
 qplot(age.group, acc,
       fill=trial.type,
       ymin=acc-acc.cil,
@@ -136,7 +157,7 @@ qplot(age.group, acc,
 and RT:
 
 ```{r}
-# pdf("~/Projects/tablet_norming/writeup/figures/rt.pdf",width=5,height=3)
+# pdf("~/Projects/dlet_norming/writeup/figures/rt.pdf",width=5,height=3)
 qplot(age.group, rt/1000,
       fill=trial.type,
       ymin=rt/1000-rt.cil/1000,
@@ -158,10 +179,10 @@ Continuous age analysis
 Accuracy continuous:
 
 ```{r}
-mss <- ddply(subset(tab,trial.type!="MEexperimental"), 
+mss <- ddply(subset(d,trial.type!="MEexperimental"), 
              .(subject.id, age), summarise,
-      rt=mean(reaction.time, na.rm=TRUE), 
-      correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
+             rt=mean(reaction.time, na.rm=TRUE), 
+             correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
 
 qplot(age,correct, 
       data=mss) + 
@@ -174,14 +195,14 @@ qplot(age,correct,
 Now with all trial types. (Consolidate rec and ME control). 
 
 ```{r}
-tab$trial.type.simple <- tab$trial.type
-levels(tab$trial.type.simple) <- c("Familiar","Familiar","ME")
-mss <- ddply(tab, 
+d$trial.type.simple <- d$trial.type
+levels(d$trial.type.simple) <- c("Familiar","Familiar","ME")
+mss <- ddply(d, 
              .(subject.id, trial.type.simple, age), summarise,
-      rt=mean(reaction.time, na.rm=TRUE), 
-      rt.cih=ci.high(reaction.time),
-      rt.cil=ci.low(reaction.time),
-      correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
+             rt=mean(reaction.time, na.rm=TRUE), 
+             rt.cih=ci.high(reaction.time),
+             rt.cil=ci.low(reaction.time),
+             correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
 
 qplot(age,correct, col=trial.type.simple, 
       data=mss) + 
@@ -193,7 +214,7 @@ qplot(age,correct, col=trial.type.simple,
 and RT
 
 ```{r}
-# pdf("~/Projects/tablet_norming/writeup/figures/individuals.pdf",width=5,height=3)
+# pdf("~/Projects/dlet_norming/writeup/figures/individuals.pdf",width=5,height=3)
 qplot(age, rt/1000, geom="pointrange",
       ymin=rt/1000-rt.cil/1000,
       ymax=rt/1000+rt.cih/1000,
@@ -211,20 +232,20 @@ Item group analysis
 Accuracy:
 
 ```{r}
-tab$easy.item <- tab$word %in% c("dog","cat","cookie","bottle",
+d$easy.item <- d$word %in% c("dog","cat","cookie","bottle",
                                  "cup","car","shoe","apple")
-mss <- ddply(subset(tab,trial.type!="MEexperimental"), 
+mss <- ddply(subset(d,trial.type!="MEexperimental"), 
              .(subject.id, trial.type, easy.item, age.group), summarise,
-      RT=mean(reaction.time, na.rm=TRUE), 
-      correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
+             RT=mean(reaction.time, na.rm=TRUE), 
+             correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
 
 msa <- ddply(mss, .(age.group, easy.item), summarise, 
-            rt=mean(RT,na.rm=TRUE), 
-            rt.cih=ci.high(RT),
-            rt.cil=ci.low(RT),
-            acc=mean(correct,na.rm=TRUE),
-            acc.cih=ci.high(correct),
-            acc.cil=ci.low(correct)) 
+             rt=mean(RT,na.rm=TRUE), 
+             rt.cih=ci.high(RT),
+             rt.cil=ci.low(RT),
+             acc=mean(correct,na.rm=TRUE),
+             acc.cih=ci.high(correct),
+             acc.cil=ci.low(correct)) 
 
 qplot(age.group, acc,
       fill=easy.item,
@@ -254,22 +275,22 @@ Item analysis
 ----
 
 ```{r}
-mssi <- ddply(tab, .(subject.id, trial.type, word), summarise,
-      RT=mean(reaction.time, na.rm=TRUE), 
-      correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
+mssi <- ddply(d, .(subject.id, trial.type, word), summarise,
+              RT=mean(reaction.time, na.rm=TRUE), 
+              correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
 
 msi <- ddply(mssi, .(trial.type, word), summarise, 
-            rt=mean(RT,na.rm=TRUE), 
-            rt.cih=ci.high(RT),
-            rt.cil=ci.low(RT),
-            acc=mean(correct),
-            acc.cih=ci.high(correct),
-            acc.cil=ci.low(correct)) 
+             rt=mean(RT,na.rm=TRUE), 
+             rt.cih=ci.high(RT),
+             rt.cil=ci.low(RT),
+             acc=mean(correct),
+             acc.cih=ci.high(correct),
+             acc.cil=ci.low(correct)) 
 
 msi$word <- reorder(msi$word, msi$acc)
 
 qplot(word, acc,
-       ymin=acc-acc.cil,
+      ymin=acc-acc.cil,
       ymax=acc+acc.cih,
       geom="pointrange",
       data=msi) + 
@@ -283,7 +304,7 @@ and RT:
 msi$word <- reorder(msi$word, msi$rt)
 
 qplot(word, rt,
-       ymin=rt-rt.cil,
+      ymin=rt-rt.cil,
       ymax=rt+rt.cih,
       geom="pointrange",
       data=msi) + 
@@ -297,9 +318,9 @@ Number of trials
 Nearly everyone sticks it out to the end!
 
 ```{r}
-tab$trial.number <- as.numeric(as.character(tab$trial.number))
-mst <- ddply(tab, .(subject.id,age.group), summarise,
-      max.trial=max(trial.number))
+d$trial.number <- as.numeric(as.character(d$trial.number))
+mst <- ddply(d, .(subject.id,age.group), summarise,
+             max.trial=max(trial.number))
 
 qplot(max.trial, facets=~age.group, data=mst)
 ```
@@ -325,8 +346,8 @@ qplot(age.group, trials,
 and RT means across trials:
 
 ```{r}
-mst <- ddply(tab, .(trial.number, age.group), summarise,
-      RT=mean(reaction.time, na.rm=TRUE))
+mst <- ddply(d, .(trial.number, age.group), summarise,
+             RT=mean(reaction.time, na.rm=TRUE))
 
 qplot(trial.number, RT, data=mst) + 
   geom_smooth(method="lm")
@@ -338,30 +359,19 @@ Statisics
 ```{r}
 library(xtable)
 rt.mod <- lmer(reaction.time ~ trial.number + age * trial.type + 
-       (trial.type | subject.id), 
-     data=tab)
+                 (trial.type | subject.id), 
+               data=d)
 summary(rt.mod)
 xtable(summary(rt.mod)$coef)
 
-tab$acc <- tab$response=="Y"
+d$acc <- d$response=="Y"
 acc.mod <- lmer(acc ~ age.group * trial.type + 
-       (trial.type | subject.id), 
-       family="binomial",
-     data=tab)
+                  (trial.type | subject.id), 
+                family="binomial",
+                data=d)
 summary(acc.mod)
 xtable(summary(acc.mod)$coef)
 
-```
-
-```{r}
-tab$trial.number <- as.numeric(as.character(tab$trial.number))
-mst <- ddply(tab, .(subject.id,age.group), summarise,
-      max.trial=max(trial.number))
-
-msta <- ddply(mst, .(age.group), summarise,
-      finished = mean(max.trial==28), 
-      num.trials = mean(max.trial))
-# xtable(msta)
 ```
 
 Reliability
@@ -371,29 +381,29 @@ Fairest analysis -- split halves where 1 half is the odd-numbered Familiar trial
 
 ```{r}
 library(dplyr)
-bytrial <- tab %>%
+bytrial <- d %>%
   select(age.group,subject.id,trial.type,trial.number,acc,reaction.time) %>%
   group_by(age.group,trial.type,subject.id) %>%
   filter(trial.type != "MEexperimental") %>%
   arrange(trial.number) %>%
   mutate(trial.order = 1:length(trial.number),
-    even.half = trial.order %% 2 == 0,
-    first.half = (even.half & trial.type == "rec" ) | 
-      (!even.half & trial.type != "rec" ))
+         even.half = trial.order %% 2 == 0,
+         first.half = (even.half & trial.type == "rec" ) | 
+           (!even.half & trial.type != "rec" ))
 
 type.trials <- bytrial %>%
   group_by(age.group,subject.id,trial.type,add=FALSE) %>%
   summarise(acc = mean(acc),
             rt = na.median(reaction.time))
 type.trials <- reshape(type.trials, idvar = c("subject.id","age.group"),
-                             timevar = "trial.type", direction="wide")
+                       timevar = "trial.type", direction="wide")
 
 half.trials <- bytrial %>%
   group_by(age.group,subject.id,first.half,add=FALSE) %>%
   summarise(acc = mean(acc),
             rt = na.median(reaction.time))
 half.trials <- reshape(half.trials, idvar = c("subject.id","age.group"),
-                             timevar = "first.half", direction="wide")
+                       timevar = "first.half", direction="wide")
 
 ```
 
@@ -428,6 +438,30 @@ reliability.type <- type.trials %>%
 
 print(reliability.half)
 print(reliability.type)
-            
-            
+```
+
+Spearman Brown Prophecy Formula
+
+``` {r}
+sb.prophecy <- function(m,r) {
+  (m * r) / (1 + (m-1) * r)
+  }
+
+reliability.half <- mutate(reliability.half, 
+                           acc.corr.sb = sb.prophecy(2, acc.corr),
+                           rt.corr.sb = sb.prophecy(2, rt.corr))
+reliability.type <- mutate(reliability.type, 
+                           acc.corr.sb = sb.prophecy(2, acc.corr),
+                           rt.corr.sb = sb.prophecy(2, rt.corr))
+```
+
+Plots
+
+```{r}
+qplot(rt.FALSE,rt.TRUE,
+      col=factor(age.group),
+      position="jitter",
+      data=half.trials) + 
+  geom_smooth(method="lm", se=FALSE) + 
+  geom_abline(intercept=0,slope=1,lty=2)
 ```

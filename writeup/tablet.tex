@@ -10,7 +10,7 @@
 
 \affiliation{Department of Psychology, Stanford University}
 
-\abstract{Mobile, touch-screen devices are increasingly ubiquitous in children's lives. The extensive use of such devices provides both a challenge and an opportunity for developmental psychologists. While more research is needed to understand the nature and consequences of young children's interaction with such devices, they nevertheless present an exciting opportunity for data collection. We describe a simple method for creating cross-platform, interactive tablet experiments using open web-based resources. We illustrate this method by collecting data from children 1--5 years old in a simple word-recognition paradigm and show that it yields reliable reaction time and accuracy data from young children. Tablets should be considered by researchers as a viable method for collecting low-cost, well-controlled developmental data.}
+\abstract{Mobile, touch-screen devices are increasingly ubiquitous in children's lives. The extensive use of such devices provides both a challenge and an opportunity for developmental psychologists. While more research is needed to understand the nature and consequences of young children's interaction with such devices, they nevertheless present an exciting opportunity for data collection. We describe a simple method for creating cross-platform, interactive tablet experiments using open web-based resources. We illustrate this method by collecting data from children 1--5 years old in a simple word-recognition paradigm and show that it yields relatively reliable reaction time and accuracy data from young children. Tablets should hence be considered by researchers as a viable method for collecting low-cost, well-controlled developmental data.}
 
 \shorttitle{Tablet-based Data Collection} 
 \rightheader{TABLET-BASED DATA COLLECTION}
@@ -113,19 +113,46 @@ We designed a two-alternative forced choice paradigm that both tested children's
 
 \subsection{Methods}
 
-\subsubsection{Participants} 
+\subsubsection{Participants}                                                                                                                              
 
-We recruited a sample of XYZ children ages 1--5 (our recruitment goal was 20 in each of four 1-year age group) from the floor of San Jose Children's Discovery Museum. An additional XYZ children were recruited for the following reasons: parent interference (XYZ), insufficient reported English exposure ($>75\%$, a standard cutoff in our studies with this population; XYZ), XYZ. 
+%       exclusion.crit subject.id
+% 1                            87
+% 2                age          2
+% 3 could not complete          4
+% 4                 dd          1
+% 5              error          2
+% 6       interference          4
+% 7               lang          7
+
+We recruited a sample of 86 children ages 1--5 from the floor of San Jose Children's Discovery Museum. Demographics for these participants are shown in Table \ref{tab:demo}. An additional 18 children in the target age range were recruited but excluded from the sample for the following reasons: parent-reported English exposure less than our pre-specified criterion of 75\% (7), parent interference (4), issues with the iPad pre-training (4), experimenter error or technical issues (2), and self-reported developmental disability (1). 
+
+% latex table generated in R 3.0.2 by xtable 1.7-3 package
+% Thu Jul 31 09:30:51 2014
+\begin{table}[t]
+\centering
+\caption{\label{tab:demo} Demographic information for our participants.}
+\begin{tabular}{rccc}
+  \hline
+Age Group & N & Mean Age & Proportion Male \\ 
+  \hline
+1-year-olds &  18 & 1.71 & 0.44 \\ 
+2-year-olds &  22 & 2.46 & 0.68 \\ 
+3-year-olds &  24 & 3.56 & 0.67 \\ 
+4-year-olds &  22 & 4.51 & 0.59 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
 
 \subsubsection{Stimuli}
 
-Visual stimuli consisted of images of sixteen familiar and eight novel objects. All were presented as cropped images on a gray background with approximately the same resolution and detail.  Audio stimuli consisted of a carrier phrase (``Can you find [the target]?''), into which we spliced recordings of the target words. All recordings featured a female speaker and were created following the procedures described in \citeA{fernald2008}. We selected a variety of words from the MacArthur-Bates Communicative Development Inventory word list \cite{fenson1994,fenson2007}, choosing some words that we were certain nearly all children would be very familiar with (e.g., ``car,'' ``dog,'' ``bottle,'') and others that were intended to be slightly more challenging (e.g., ``monkey,'' ``shovel,'' ``lion''). Novel words were mono- and di-syllabic words that had been used in previous experiments of this type (e.g. ``pifo,'' ``dax,'' ``kreeb''). We further included four fillers to break up the experiment (e.g., a picture of a train with a sentence of audio describing it).
+Visual stimuli consisted of images of sixteen familiar and eight novel objects. All were presented as cropped images on a gray background with approximately the same resolution and detail.  Audio stimuli consisted of a carrier phrase (``Can you find [the target]?''), into which we spliced recordings of the target words. All recordings featured a female speaker and were created following the procedures described in \citeA{fernald2008}. We selected a variety of words from the MacArthur-Bates Communicative Development Inventory word list \cite{fenson1994,fenson2007}, choosing some words that we were certain nearly all children would be very familiar with (e.g., ``car,'' ``dog,'' ``bottle,'') and others that were intended to be slightly more challenging (e.g., ``monkey,'' ``shovel,'' ``lion''). Novel words were mono- and di-syllabic words that had been used in previous experiments of this type (e.g. ``dax,'' ``pifo,'' ``kreeb''). We further included four fillers to break up the experiment (e.g., a picture of a train with a sentence of audio describing it).
 
 \subsubsection{Procedure}
 
 We created a simple page to help children learn to tap appropriately on the iPad. To advance past this training page, they needed to tap a set of five dots in random locations; each dot transformed into an ``X'' when tapped. After the child tapped all the dots, the experimenter could either advance the app to the experiment or rerun the training if they felt the child could use more practice. 
 
-Experimental stimuli were then presented in one of two pseudorandom lists, in which trials (which contained a pair of pictures) were counterbalanced for order, target side, and XYZ. The experiment had 28 trials in total (8 of each of three trial type plus four fillers). The three trial types were \emph{Familiar Word} trials, in which two familiar pictures were presented and children were asked to select the image that matched a familiar word; \emph{ME Control} trials, in which a familiar and a novel image were presented and children were asked to select the image that matched a familiar word; and \emph{ME Inference} trials, in which a familiar and a novel image were presented and children were asked to select the image that matched a novel word. 
+Experimental stimuli were then presented in one of two pseudorandom lists, in which trials (which contained a pair of pictures) were counterbalanced for order, target side, and XYZ. The experiment had 28 trials in total (8 of each of the three trial types plus four fillers). The three trial types were \emph{Familiar Word} trials, in which two familiar pictures were presented and children were asked to select the image that matched a familiar word; \emph{ME Control} trials, in which a familiar and a novel image were presented and children were asked to select the image that matched a familiar word; and \emph{ME Inference} trials, in which a familiar and a novel image were presented and children were asked to select the image that matched a novel word. 
 
 \subsection{Results}
 
@@ -139,10 +166,10 @@ Experimental stimuli were then presented in one of two pseudorandom lists, in wh
   \hline
 Age group & Proportion finishing & Average number of trials \\ 
   \hline
-1-year-olds & 0.45 & 22.6 \\ 
-2-year-olds & 0.86 & 27.1 \\ 
+1-year-olds & 0.44 & 20.4 \\ 
+2-year-olds & 0.91 & 27.5 \\ 
 3-year-olds & 1.00 & 28.0 \\ 
-4-year-olds & 0.81 & 27.4 \\ 
+4-year-olds & 0.86 & 27.6 \\ 
    \hline
 \end{tabular}
 \end{table}
