@@ -404,47 +404,67 @@ msta <- ddply(mst, .(age.group), summarise,
 Reliability
 ----
 
+Fairest analysis -- split halves where 1 half is the odd-numbered Familiar trials and even numbered ME trials, and the other half the remaining trials Control trials.
+
 ```{r}
 library(dplyr)
 bytrial <- tab %>%
-  select(subject.id,trial.type,trial.number,acc,reaction.time) %>%
-  group_by(trial.type,subject.id) %>%
+  select(age.group,subject.id,trial.type,trial.number,acc,reaction.time) %>%
+  group_by(age.group,trial.type,subject.id) %>%
+  filter(trial.type != "MEexperimental") %>%
   arrange(trial.number) %>%
   mutate(trial.order = 1:length(trial.number),
-    first.half = factor((trial.order <= (length(trial.order)/2)),
-                             levels=c("TRUE","FALSE")),
-    even.half = factor(trial.order %% 2 == 0,
-                             levels=c("TRUE","FALSE")))
+    even.half = trial.order %% 2 == 0,
+    first.half = (even.half & trial.type == "rec" ) | 
+      (!even.half & trial.type != "rec" ))
 
-split.half.trials <- bytrial %>%
-  group_by(first.half,add=TRUE) %>%
+type.trials <- bytrial %>%
+  group_by(age.group,subject.id,trial.type,add=FALSE) %>%
   summarise(acc = mean(acc),
             rt = na.median(reaction.time))
-split.half.trials <- reshape(split.half.trials,idvar = c("subject.id","trial.type"),
+type.trials <- reshape(type.trials, idvar = c("subject.id","age.group"),
+                             timevar = "trial.type", direction="wide")
+
+half.trials <- bytrial %>%
+  group_by(age.group,subject.id,first.half,add=FALSE) %>%
+  summarise(acc = mean(acc),
+            rt = na.median(reaction.time))
+half.trials <- reshape(half.trials, idvar = c("subject.id","age.group"),
                              timevar = "first.half", direction="wide")
-
-
-even.half.trials <- bytrial %>%
-  group_by(even.half,add=TRUE) %>%
-  summarise(acc = mean(acc),
-            rt = na.median(reaction.time))
-even.half.trials <- reshape(even.half.trials,idvar = c("subject.id","trial.type"),
-                             timevar = "even.half", direction="wide")
 
 ```
 
+Statistics
+
 ``` {r}
-split.half.bytype <- split.half.trials %>%
-  group_by(trial.type) %>%
+reliability.half <- half.trials %>%
+  group_by(age.group) %>%
   summarise(acc.corr = cor(acc.TRUE,acc.FALSE,use="complete.obs"),
-            rt.corr = cor(rt.TRUE,rt.FALSE,use="complete.obs"))
+            acc.corr.t = cor.test(acc.TRUE,acc.FALSE,
+                                  use="complete.obs")$statistic,
+            acc.corr.p = cor.test(acc.TRUE,acc.FALSE,
+                                  use="complete.obs")$p.value,
+            rt.corr = cor(rt.TRUE,rt.FALSE,use="complete.obs"),
+            rt.corr.t = cor.test(rt.TRUE,rt.FALSE,
+                                 use="complete.obs")$statistic,
+            rt.corr.p = cor.test(rt.TRUE,rt.FALSE,
+                                 use="complete.obs")$p.value)
 
-print(split.half.bytype)
+reliability.type <- type.trials %>%
+  group_by(age.group) %>%
+  summarise(acc.corr = cor(acc.rec,acc.MEcontrol,use="complete.obs"),
+            acc.corr.t = cor.test(acc.rec,acc.MEcontrol,
+                                  use="complete.obs")$statistic,
+            acc.corr.p = cor.test(acc.rec,acc.MEcontrol,
+                                  use="complete.obs")$p.value,
+            rt.corr = cor(rt.rec,rt.MEcontrol,use="complete.obs"),
+            rt.corr.t = cor.test(rt.rec,rt.MEcontrol,
+                                 use="complete.obs")$statistic,
+            rt.corr.p = cor.test(rt.rec,rt.MEcontrol,
+                                 use="complete.obs")$p.value)
 
-even.half.bytype <- even.half.trials %>%
-  group_by(trial.type) %>%
-  summarise(acc.corr = cor(acc.TRUE,acc.FALSE,use="complete.obs"),
-            rt.corr = cor(rt.TRUE,rt.FALSE,use="complete.obs"))
-
-print(even.half.bytype)
+print(reliability.half)
+print(reliability.type)
+            
+            
 ```
