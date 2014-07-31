@@ -52,7 +52,6 @@ Now add demographics.
 
 ```{r}
 demo <- read.csv("~/Projects/tablet_norming/data/tablet_demographics.csv")
-demo$age <- demo$age_group
 demo$age.group <- floor(demo$age)
 tab <- merge(tab, demo)
 
@@ -104,42 +103,7 @@ Aggregation.
 mss <- ddply(tab, .(subject.id, trial.type, age.group), summarise,
       RT=mean(reaction.time, na.rm=TRUE), 
       correct=sum(response=="Y") / sum(response=="Y" | response=="N"))
-
-ms <- ddply(mss, .(trial.type), summarise, 
-            rt=mean(RT,na.rm=TRUE), 
-            rt.cih=ci.high(RT,na.rm=TRUE),
-            rt.cil=ci.low(RT,na.rm=TRUE),
-            acc=mean(correct),
-            acc.cih=ci.high(correct),
-            acc.cil=ci.low(correct))
 ```
-
-First basic plots. Accuracy.
-
-```{r}
-qplot(trial.type, acc,
-      fill=trial.type,
-      ymin=acc-acc.cil,
-      ymax=acc+acc.cih,
-      geom=c("bar","linerange"),
-      stat="identity",
-      data=ms)
-```
-
-RT.
-
-```{r}
-qplot(trial.type, rt,
-      fill=trial.type,
-      ymin=rt-rt.cil,
-      ymax=rt+rt.cih,
-      geom=c("bar","linerange"),
-      stat="identity",
-      data=ms)
-```
-
-Now break it down by age. 
------
 
 Accuracy:
 
@@ -201,6 +165,7 @@ mss <- ddply(subset(tab,trial.type!="MEexperimental"),
 
 qplot(age,correct, 
       data=mss) + 
+  xlim(c(1,5)) + 
   scale_y_continuous(breaks=seq(0,1,.25), limits=c(0,1.1)) + 
   geom_hline(yintercept=.5,lty=2) +
   geom_smooth()
@@ -239,8 +204,6 @@ qplot(age, rt/1000, geom="pointrange",
   geom_smooth()
 # dev.off()
 ```
-
-RT
 
 Item group analysis
 -----
