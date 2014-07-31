@@ -22,6 +22,7 @@ na.sum <- function(x) {sum(x,na.rm=T)}
 na.median <- function(x) {median(x,na.rm=T)}
 na.cor <- function(x) {cor(x,na.rm=T)}
 
+library(xtable)
 library(plyr)
 library(stringr)
 library(ggplot2)
@@ -56,36 +57,8 @@ d <- subset(d, exclude == 0)
 d <- subset(d, trial.type != "filler")
 ```
 
-Reaction time distribution. Based on this plot, we prune at +/- 2SDs in log space (red lines). We also remove incorrect trials.
-
-```{r}
-d$reaction.time[d$response=="N"] <- NA # start by removing 
-
-m <- mean(log(d$reaction.time)) 
-s <- sd(log(d$reaction.time))
-
-qplot(reaction.time/1000,
-      data=d) + 
-  geom_vline(xintercept=exp(m - 2*s)/1000, col="red",lty=2) + 
-  geom_vline(xintercept=exp(m + 2*s)/1000, col="red",lty=2) + 
-  scale_x_log10(breaks=c(1,2,5,10,20,50))
-
-mean(d$reaction.time)
-median(d$reaction.time)
-exp(m-(2*s))
-exp(m+(2*s))
-mean(d$reaction.time > exp(m + 2*s) |
-       d$reaction.time < exp(m - 2*s))
-```
-
-Do the pruning here.
-
-```{r}
-d$reaction.time[d$reaction.time > exp(m + 2*s) |
-                    d$reaction.time < exp(m - 2*s)] <- NA
-```
-
-
+Demographics
+----
 How many participants do we have? 
 
 ```{r}
@@ -114,6 +87,99 @@ msta <- ddply(mst, .(age.group), summarise,
 xtable(msta)
 ```
 
+Reaction time pruning
+----
+
+Reaction time distribution. Based on this plot, we prune at +/- 2SDs in log space (red lines). We also remove incorrect trials.
+
+```{r}
+d$reaction.time[d$response=="N"] <- NA # start by removing 
+
+m <- mean(log(d$reaction.time),na.rm=TRUE) 
+s <- sd(log(d$reaction.time),na.rm=TRUE)
+
+qplot(reaction.time/1000,
+      data=d) + 
+  geom_vline(xintercept=exp(m - 2*s)/1000, col="red",lty=2) + 
+  geom_vline(xintercept=exp(m + 2*s)/1000, col="red",lty=2) + 
+  scale_x_log10(breaks=c(1,2,5,10,20,50))
+
+mean(d$reaction.time,na.rm=TRUE)
+median(d$reaction.time,na.rm=TRUE)
+exp(m-(2*s))
+exp(m+(2*s))
+mean(d$reaction.time > exp(m + 2*s) |
+       d$reaction.time < exp(m - 2*s), na.rm=TRUE)
+```
+
+Age effects:
+
+```{r}
+ggplot(d) + 
+  geom_bar(aes(x = reaction.time/1000, y=..count..)) +
+    scale_x_log10(breaks=c(1,5,10,50)) +
+  facet_grid(.~age.group)
+```
+
+Try mixture of gaussians.
+
+```{r}
+library(mclust)
+
+clusts <- Mclust(log(d$reaction.time)[!is.na(log(d$reaction.time))])
+
+c1 <- data.frame(x = (exp(seq(6,10,.1))/1000),
+                 y = dnorm(seq(6,10,.1),
+                         mean = summary(clusts, parameter=TRUE)$mean[1],
+                         sd = sqrt(summary(clusts, parameter=TRUE)$variance[1])))
+c2 <- data.frame(x = (exp(seq(6,10,.1))/1000),
+                 y = dnorm(seq(6,10,.1),
+                         mean = summary(clusts, parameter=TRUE)$mean[2],
+                         sd = sqrt(summary(clusts, parameter=TRUE)$variance[2])))
+c1$y <- 1.8*mean(summary(clusts)$classification==1) * c1$y / sum(c1$y)
+c2$y <- 1.8*mean(summary(clusts)$classification==2) * c2$y / sum(c2$y)
+
+pdf("~/Projects/tablet_norming/writeup/figures/rt_dist.pdf",width=5,height=3)
+ggplot(d) + 
+  geom_bar(aes(x = reaction.time/1000, y = (..count..)/sum(..count..))) +
+    scale_x_log10(breaks=c(.5, 1,2,5,10,20,50)) + 
+  geom_line(aes(x=x,y=y),
+            col="red",data=c1) + 
+  geom_line(aes(x=x,y=y),
+            col="blue",data=c2) + 
+  ylab("Proportion of Values") + 
+  xlab("Reaction Time (s)") + 
+  geom_vline(xintercept=.5, lty=2) + 
+  geom_vline(xintercept=4, lty=2)  
+dev.off()
+
+c1.top <- exp(summary(clusts, parameter=TRUE)$mean[1] + 
+                sqrt(summary(clusts, parameter=TRUE)$variance[1])*3)
+
+c1.bottom <- exp(summary(clusts, parameter=TRUE)$mean[1] - 
+                   sqrt(summary(clusts, parameter=TRUE)$variance[1])*3)
+
+```
+
+Now consider > 4s and < .5s:
+
+```{r}
+mean(d$reaction.time > exp(m + 2*s) |
+                    d$reaction.time < exp(m - 2*s), na.rm=TRUE)
+mean(d$reaction.time > 4000 | d$reaction.time < 500, na.rm=TRUE)
+mean(d$reaction.time > c1.top | d$reaction.time < c1.bottom, na.rm=TRUE)
+```
+
+Do the pruning here.
+
+```{r}
+#d$reaction.time[d$reaction.time > exp(m + 2*s) |
+#                    d$reaction.time < exp(m - 2*s)] <- NA
+d$reaction.time[d$reaction.time > 4000 |
+                    d$reaction.time < 500] <- NA
+
+```
+
 
 Actual analysis starts here
 ====
@@ -138,7 +204,7 @@ msa <- ddply(mss, .(trial.type, age.group), summarise,
              acc.cil=ci.low(correct)) 
 
 levels(msa$trial.type) <- c("Familiar Word","ME Control","ME Inference")
-# pdf("~/Projects/dlet_norming/writeup/figures/accuracy.pdf",width=5,height=3)
+pdf("~/Projects/tablet_norming/writeup/figures/accuracy.pdf",width=5,height=3)
 qplot(age.group, acc,
       fill=trial.type,
       ymin=acc-acc.cil,
@@ -151,13 +217,13 @@ qplot(age.group, acc,
   ylab("Accuracy") + 
   scale_fill_discrete(name="Trial Type") + 
   geom_hline(yintercept=.5,lty=2)
-# dev.off()
+dev.off()
 ```
 
 and RT:
 
 ```{r}
-# pdf("~/Projects/dlet_norming/writeup/figures/rt.pdf",width=5,height=3)
+pdf("~/Projects/tablet_norming/writeup/figures/rt.pdf",width=5,height=3)
 qplot(age.group, rt/1000,
       fill=trial.type,
       ymin=rt/1000-rt.cil/1000,
@@ -169,7 +235,7 @@ qplot(age.group, rt/1000,
   xlab("Age (Years)") + 
   ylab("Reaction Time (s)") + 
   scale_fill_discrete(name="Trial Type") 
-# dev.off()
+dev.off()
 
 ```
 
@@ -214,7 +280,7 @@ qplot(age,correct, col=trial.type.simple,
 and RT
 
 ```{r}
-# pdf("~/Projects/dlet_norming/writeup/figures/individuals.pdf",width=5,height=3)
+pdf("~/Projects/tablet_norming/writeup/figures/individuals.pdf",width=5,height=3)
 qplot(age, rt/1000, geom="pointrange",
       ymin=rt/1000-rt.cil/1000,
       ymax=rt/1000+rt.cih/1000,
@@ -223,7 +289,7 @@ qplot(age, rt/1000, geom="pointrange",
   ylab("Reaction Time (s)") +
   xlab("Age Group (Years)") + 
   geom_smooth()
-# dev.off()
+dev.off()
 ```
 
 Item group analysis
@@ -353,25 +419,27 @@ qplot(trial.number, RT, data=mst) +
   geom_smooth(method="lm")
 ```
 
-Statisics 
+Statistics 
 ----
 
 ```{r}
-library(xtable)
-rt.mod <- lmer(reaction.time ~ trial.number + age * trial.type + 
-                 (trial.type | subject.id), 
+rt.mod <- lmer(log(reaction.time) ~ trial.number + factor(age.group) * trial.type + 
+                 (1 | subject.id), 
                data=d)
 summary(rt.mod)
 xtable(summary(rt.mod)$coef)
+```
 
+and accuracy:
+
+```{r}
 d$acc <- d$response=="Y"
-acc.mod <- lmer(acc ~ age.group * trial.type + 
-                  (trial.type | subject.id), 
+acc.mod <- glmer(acc ~ factor(age.group) * trial.type + 
+                  (1 | subject.id), 
                 family="binomial",
                 data=d)
 summary(acc.mod)
 xtable(summary(acc.mod)$coef)
-
 ```
 
 Reliability
@@ -453,6 +521,8 @@ reliability.half <- mutate(reliability.half,
 reliability.type <- mutate(reliability.type, 
                            acc.corr.sb = sb.prophecy(2, acc.corr),
                            rt.corr.sb = sb.prophecy(2, rt.corr))
+print(reliability.half)
+print(reliability.type)
 ```
 
 Plots

@@ -185,7 +185,32 @@ Children were enthusiastic about the experiment, even though it contained a subs
 
 Accuracies for familiar word trials were above chance even for the one-year-old age group and rapidly approached ceiling performance in the two-year-olds (Figure \ref{fig:accuracy}). There were also no substantive differences in accuracy between Familiar Word and ME control trials. In contrast, ME Inference trials were substantially more difficult for children, with one-year-olds performing at chance, and two-year-olds showing a substantial decrement in performance for these trials. 
 
-We fit a logistic mixed effects model with a maximal random effects structure \cite{barr2013} to the data. To make inferences about differences between age groups, we coded age group as a discrete factor.  We found significant main effects of age ($\beta = $, $p = $) and ME inference trials ($\beta = $, $p = $), but no effect of ME control trials ($\beta = $, $p = $). We additionally ...
+  %                                           Estimate Std. Error z value Pr(>|z|)    
+% (Intercept)                                   1.1595     0.2990   3.878 0.000105 ***
+% factor(age.group)2                            1.6828     0.4610   3.651 0.000262 ***
+% factor(age.group)3                            3.2065     0.6790   4.722 2.34e-06 ***
+% factor(age.group)4                            2.5992     0.5805   4.478 7.54e-06 ***
+% trial.typeMEcontrol                          -0.4338     0.3259  -1.331 0.183114    
+% trial.typeMEexperimental                     -1.1353     0.3191  -3.558 0.000374 ***
+% factor(age.group)2:trial.typeMEcontrol        0.1232     0.5205   0.237 0.812910    
+% factor(age.group)3:trial.typeMEcontrol        0.1449     0.8396   0.173 0.862955    
+% factor(age.group)4:trial.typeMEcontrol        0.9881     0.8111   1.218 0.223091    
+% factor(age.group)2:trial.typeMEexperimental  -0.6019     0.4752  -1.267 0.205244    
+% factor(age.group)3:trial.typeMEexperimental  -0.4034     0.7262  -0.555 0.578583    
+% factor(age.group)4:trial.typeMEexperimental   0.4269     0.6484   0.658 0.510337    
+
+We fit a logistic mixed effects model to the data \cite{jaeger2008}. Our model specification included age group (coded as a discrete factor, in order not to assume linear main effects and interactions), trial type, and interactions of age group and trial type. We found that models with larger random effect structures did not converge, so we included only a random intercept for each participant. One-year-olds were coded as the intercept. We found a significant increase in performance for all three older age groups ($\beta = 1.68,~3.21,~2.60$, all $p$s $< .0005$) and a significant decrement in performance for ME Inference trials  ($\beta = -1.14$, $p = .0003$), but no effect in ME Control trials and no interactions between trial type and age group (all $p$s $> .18$). This model thus supports the findings of reliable developmental differences as well as a reliable decrement in performance for mutual exclusivity trials.
+
+\begin{figure}[t] 
+  \begin{center} 
+    \includegraphics[width=5in]{figures/rt_dist.pdf} 
+    \caption{\label{fig:rtdist} A histogram of reaction times across all participants. Red and blue curves show the best-fitting distributions found by a 2-component Gaussian mixture model. Dashed lines show the cutoff values we adopted (.5 and 4.0 s).}
+  \end{center} 
+\end{figure}
+
+We next turned to the reaction time data. Considering only reaction times for correct trials, we found a substantial skew in the reaction times we collected (Figure \ref{fig:rtdist}). This pattern appeared to be due to two clusters of reaction times: one larger, tighter cluster early on, representing immediate responding, and one broader slower cluster representing trials on which participants were unsure how to respond, looked to a parent, or otherwise deliberated. In an exploratory analysis, we fit a Gaussian mixture model (using the \texttt{mclust} package) and found that the best BIC values were indeed produced by a two-cluster solution, which is shown in Figure \ref{fig:rtdist}. 
+
+For further analysis, we excluded reaction times faster than 500 ms or slower than 4000 ms. These values were determined post-hoc, based on inspection of the distribution but not on the statistical results that follow. They correspond well both to our intuitions about the task and to the properties of the first mixture component found by the mixture model (whose mean + 3 standard deviations was 3928 ms). Excluding based on these threshold values resulted in an exclusion of 10.9\% of values.\footnote{Although this proportion seems high, consider the collection of reaction times based on eye-tracking methods. In these analyses, only half of trials are considered---those where the eyes are on the distractor item at the point of disambiguation \cite{fernald2008}.}
 
 
 \begin{figure}[t] 
@@ -195,18 +220,32 @@ We fit a logistic mixed effects model with a maximal random effects structure \c
   \end{center} 
 \end{figure}
 
-We next turned to reaction time data. Our reaction time data had a mean of XYZ but a median of only XYZ. This difference indicates a standard skewed distribution; in addition, the distribution contained a number of extreme outliers from trials where children asked for clarification, refused to choose, or simply became distracted. We removed outliers using a preset criterion of 2 standard deviations above or below the mean, computed in log space (lower threshold: XYZ ms, upper threshold: XYZ ms). This procedure removed XYZ\% of the data (around 1.XYZ trials of 28 per child). 
+Older children were faster overall, and ME inference trials were slower than both Familiar Word and ME Control trials for all groups except the one-year-olds (Figure \ref{fig:rt}). We again did not observe large numerical differences between Familiar Word and ME Control trials. To quantify these effects, we fit a linear mixed effects model to  log-transformed reaction-time data (with the same structure as the model described above, but including an effect of trial number). We found a significant effect of trial number such that reaction times decrease over the course of the experiment ($\beta = .001$, $p = .04$), and three- and four-year-olds were significantly faster than one-year-olds ($\beta = -.19,~.26$, $p$s $<.005$). There were no main effects of trial type, but there were reliable slowdowns for ME Inference trials across the two-, three-, and four-year-olds ($\beta=.25,~.26,~.29$, all $p$s $< .0001$). ME control trials were also reliably faster for the four-year-olds ($\beta=-.13$, $p=.04$). 
 
-Reaction times showed both developmental and trial-by-trial effects. Older children were substantially faster at our task, and ME inference trials were slower than both Familiar Word and ME Control trials. Again, we did not observe large numerical differences between Familiar Word and ME Control trials.
-
-We fit a linear mixed effects model to our reaction-time data. 
-
-\begin{figure}[t] 
-  \begin{center} 
-    \includegraphics[width=5in]{figures/individuals.pdf} 
-    \caption{\label{fig:rt2} Reaction times for familiar word recognition (both Familiar and ME control trials), plotted by age. Each dot represents an individual. Error bars show 95\% confidence intervals on individual RTs, computed by non-parametric bootstrap. The smoothing line is a loess non-parametric regression line with a 95\% confidence interval.}
-  \end{center} 
-\end{figure}
+% % latex table generated in R 3.0.2 by xtable 1.7-3 package
+% % Thu Jul 31 11:41:11 2014
+% \begin{table}[ht]
+% \centering
+% \begin{tabular}{rrrr}
+%   \hline
+%  & Estimate & Std. Error & t value \\ 
+%   \hline
+% (Intercept) & 7.54 & 0.06 & 133.03 \\ 
+%   trial.number & -0.00 & 0.00 & -2.03 \\ 
+%   factor(age.group)2 & -0.05 & 0.07 & -0.74 \\ 
+%   factor(age.group)3 & -0.19 & 0.07 & -2.78 \\ 
+%   factor(age.group)4 & -0.26 & 0.07 & -3.91 \\ 
+%   trial.typeMEcontrol & 0.08 & 0.06 & 1.40 \\ 
+%   trial.typeMEexperimental & -0.03 & 0.06 & -0.41 \\ 
+%   factor(age.group)2:trial.typeMEcontrol & -0.11 & 0.07 & -1.58 \\ 
+%   factor(age.group)3:trial.typeMEcontrol & -0.12 & 0.06 & -1.80 \\ 
+%   factor(age.group)4:trial.typeMEcontrol & -0.13 & 0.07 & -2.01 \\ 
+%   factor(age.group)2:trial.typeMEexperimental & 0.25 & 0.07 & 3.39 \\ 
+%   factor(age.group)3:trial.typeMEexperimental & 0.26 & 0.07 & 3.75 \\ 
+%   factor(age.group)4:trial.typeMEexperimental & 0.29 & 0.07 & 4.19 \\ 
+%    \hline
+% \end{tabular}
+% \end{table}
 
 One primary concern for our study was the individual reliability of reaction time data. Group-level developmental differences such as those described above do not necessarily signal a measure with high reliability. We approach this question in several ways. First, we show individuals' reaction-time data plotted in Figure \ref{fig:rt2}, with confidence intervals for each. Confidence intervals are broad for the youngest children, but are relatively tight for the older children in our group. 
 
