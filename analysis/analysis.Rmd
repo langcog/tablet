@@ -525,6 +525,54 @@ print(reliability.half)
 print(reliability.type)
 ```
 
+Now bootstrap on different splits
+
+```{r}
+n.samps <- 1000
+sims <- data.frame()
+for (i in 1:n.samps) {  
+  split <- sample(1:16,8)
+  bytrial <- d %>%
+    filter(trial.type != "MEexperimental") %>%
+    select(age.group,subject.id,trial.number,acc,reaction.time) %>%
+    group_by(age.group,subject.id) %>%
+    arrange(trial.number) %>%
+    mutate(first.half = trial.number %in% split)
+    
+  half.trials <- bytrial %>%
+    group_by(age.group,subject.id,first.half,add=FALSE) %>%
+    summarise(acc = mean(acc),
+              rt = na.median(reaction.time))
+  half.trials <- reshape(half.trials, idvar = c("subject.id","age.group"),
+                         timevar = "first.half", direction="wide")
+  
+  reliability.half <- half.trials %>%
+    group_by(age.group) %>%
+    summarise(acc.corr = cor(acc.TRUE,acc.FALSE,use="complete.obs"),
+              rt.corr = cor(rt.TRUE,rt.FALSE,use="complete.obs"),
+              acc.corr.sb = sb.prophecy(2, acc.corr),
+              rt.corr.sb = sb.prophecy(2, rt.corr))
+  reliability.half$sim <- i
+  sims <- rbind.fill(sims, reliability.half)
+}
+
+ddply(sims, .(age.group), summarise,    
+      m.acc.corr = mean(acc.corr, na.rm=TRUE),
+      m.rt.corr = mean(rt.corr, na.rm=TRUE),
+      m.acc.corr.sb = mean(acc.corr.sb, na.rm=TRUE),
+      m.rt.corr.sb = mean(rt.corr.sb, na.rm=TRUE),
+      cil.acc.corr = quantile(acc.corr, c(.025), na.rm=TRUE),
+      cih.acc.corr = quantile(acc.corr, c(.975), na.rm=TRUE),
+      cil.rt.corr = quantile(rt.corr, c(.025), na.rm=TRUE),
+      cih.rt.corr = quantile(rt.corr, c(.975), na.rm=TRUE),
+      cil.acc.corr.sb = quantile(acc.corr.sb, c(.025), na.rm=TRUE),
+      cih.acc.corr.sb = quantile(acc.corr.sb, c(.975), na.rm=TRUE),
+      cil.rt.corr.sb = quantile(rt.corr.sb, c(.025), na.rm=TRUE),
+      cih.rt.corr.sb = quantile(rt.corr.sb, c(.975), na.rm=TRUE))
+
+```
+
+
 Plots
 
 ```{r}
