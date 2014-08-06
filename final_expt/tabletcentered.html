@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>What does this mean?</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> 
+
+    <script src="spriteData.js"></script>
+
+    <link rel="stylesheet" href="stylecentered.css" />
+    <meta name="viewport" content="initial-scale=1.0" /> 
+     <!--<meta name="viewport" content="width=device-width">  -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+  </head>
+  <body>
+  
+    <div class="slide" id="instructions">
+      <img src="images/stanford.png" alt="Stanford University">
+        <p id='logo-text'>Stanford Language and Cognition Lab</p>
+   
+        <p class="block-text">Welcome to the tablet study. Enter relevant information below:</p>
+
+        <p class="block-text">
+          subject ID: <br>
+          <input type="text" id="subjectID" name="subjectID" size="30"> 
+        </p>
+
+        <p class="block-text">
+          list number: <br>
+          <input type="text" id="order" name="order" size="30"> 
+        </p>
+
+        <button type="button" id="beforeStudy" onClick="this.blur(); experiment.checkInput()">Start</button>
+
+        <div id="checkMessage"> </div> <!--dynamically built in javascript-->
+    </div>
+ 
+  <div class="slide" id="training"></div>
+
+  <div class="slide" id="prestudy">
+        <br><br><br><br>
+        <center><button type="button" onClick="this.blur(); experiment.preStudy()">Begin</button></center>
+  </div>
+
+   <div class="slide" id="stage">
+      <div id="labelInst"> </div> <!--dynamically built in javascript-->
+      <div id="objects"> </div> <!--dynamically built in javascript-->
+
+      <audio id="sound_player">
+        <source src="tablet_sprite_edited.mp3" type="audio/mp3">
+      </audio>  
+
+   </div>
+
+   <div class="slide" id="filler">
+      <div id="filler"> </div> <!--dynamically built in javascript-->
+    </div>
+
+    <div class="slide" id="finished">
+    </div>
+
+    
+    <script src="tabletcentered.js"></script>
+    
+  </body>
+</html>
