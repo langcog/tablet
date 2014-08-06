@@ -3,7 +3,7 @@ tablet_norming
 
 Norming experiments for the use of tablets in developmental research
 
-This repository contains all of the code associated with the experiment "Using Tablets to Collect Data from Young Children" presented in the Journal of Cognition and Development. This readme contains information about the contents of each file.
+This repository contains all of the code associated with the experiment "Using Tablets to Collect Data from Young Children" presented in the Journal of Cognition and Development. This readme contains information about the contents of each folder for the repository.
 
 analysis: contains R markdown folders for analysis of data. analysis.Rmd reads in data both from tabletstudyresults.csv, which contains the data from all trials, and tablet_demographics.csv, which contains demographics information and information about participant exclusion.
 
