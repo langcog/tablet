@@ -7,7 +7,7 @@ This repository contains all of the code associated with the experiment "Using T
 
 analysis: contains R markdown files for analysis of data. analysis.Rmd reads in data both from tabletstudyresults.csv, which contains the data from all trials, and tablet_demographics.csv, which contains demographics information and information about participant exclusion.
 
-audio: contains audio files for the filler trials used in the study. For the audio incorporated into the final version of the experiment in sprite form, please see the "iPad" folder.
+audio: contains audio files for the filler trials used in the study. For the audio incorporated into the final version of the experiment in sprite form, please see the "final_expt" folder.
 
 data: contains both csv files with final data: tabletstudyresults.csv and tablet_demographics.csv. 
 
@@ -25,7 +25,7 @@ spriteData.js: contains information about the start time, the length, and the on
 
 styecentered.css: basic style sheet for the study.
 
-tablet_sprite_edited.mp3: a sound file which is a concatenation of every sound used in the study (including the filler audio from the folder "audio"). Created using Audacity. Information for where each sound prompt occurs within the mp3 is contained within "spriteData.js."
+tablet_sprite_edited.mp3: one sound file that is the concatenation of every sound used in the study (including the filler audio from the folder "audio"). Created using Audacity. Information for where each sound prompt occurs within the mp3 is contained within "spriteData.js."
 
 tabletcentered.html: html for the study. 
 
