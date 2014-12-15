@@ -1,0 +1,107 @@
+---
+  title: "TAB_COMP"
+output: html_document
+---
+  
+Tablet comparison script. 
+====
+  
+  
+  
+  FIXMES
+  
+  
+  
+  Set up some functions. 
+
+```{r, echo=FALSE}
+rm(list=ls())
+## for bootstrapping 95% confidence intervals
+theta <- function(x,xdata,na.rm=T) {mean(xdata[x],na.rm=na.rm)}
+ci.low <- function(x,na.rm=T) {
+  mean(x,na.rm=na.rm) - quantile(bootstrap(1:length(x),1000,theta,x,na.rm=na.rm)$thetastar,.025,na.rm=na.rm)}
+ci.high <- function(x,na.rm=T) {
+  quantile(bootstrap(1:length(x),1000,theta,x,na.rm=na.rm)$thetastar,.975,na.rm=na.rm) - mean(x,na.rm=na.rm)}
+
+na.mean <- function(x) {mean(x,na.rm=T)}
+na.sum <- function(x) {sum(x,na.rm=T)}
+na.median <- function(x) {median(x,na.rm=T)}
+na.cor <- function(x) {cor(x,na.rm=T)}
+
+library(xtable)
+library(stringr)
+library(ggplot2)
+library(lme4)
+library(bootstrap)
+library(xtable)
+library(dplyr)
+library(tidyr)
+theme_set(theme_bw())
+```
+
+Load data and preliminaries.
+
+```{r}
+story <- read.csv("~/Projects/tablet_norming/data/storystudyresults.csv")
+demo <- read.csv("~/Projects/tablet_norming/data/story_demographics.csv")
+d <- left_join(story, demo, by = "SID")
+
+d <- d %>% 
+  gather(trial, correct, ends_with(".Correct"), na.rm=FALSE) %>%
+  select(-starts_with("X")) %>%
+  mutate(trial = as.numeric(str_replace_all(str_replace(trial, "X", ""), ".Correct", "")))
+
+lists <- read.csv("~/Projects/tablet_norming/data/lists.csv")
+
+d <- left_join(d, lists, by=c("List","trial"))
+```
+
+```{r}
+unique(d$trial.type)
+
+d <- d %>% rename(age = age_group) %>%
+  mutate(age.group = floor(age), 
+         trial.type = factor(trial.type, 
+                             levels=c("familiar-familiar",
+                                      "FAMILIAR-novel",
+                                      "familiar-NOVEL"),
+                             labels=c("Familiar Word",
+                                      "ME Control",
+                                      "ME Inference")))
+
+
+ms <- d %>% filter(trial.type != "filler" & 
+                     exclude == 0 &
+                     !is.na(age.group) & 
+                     age.group != 5) %>%
+  group_by(SID, trial.type, age.group) %>%
+  summarise(correct = mean(correct, na.rm=TRUE)) %>%
+  group_by(trial.type, age.group, add=FALSE) %>%
+  summarise(n = n(),
+            cih = ci.high(correct),
+            cil=ci.low(correct),
+            correct = mean(correct, na.rm=TRUE))
+
+quartz()
+qplot(age.group,correct, fill=trial.type, geom=c("bar"), 
+      stat="identity", position="dodge", data=ms) + 
+  geom_hline(aes(yintercept=.5), lty=2) + 
+  geom_linerange(aes( ymax=correct + cih, ymin=correct - cil), position=position_dodge(width=.9)) 
+```
+
+```{r}
+mss <- d %>% filter(trial.type != "filler" & 
+                     exclude == 0 &
+                     !is.na(age.group) & 
+                     age.group != 5) %>%
+  group_by(SID, trial.type, age.group) %>%
+  summarise(correct = mean(correct, na.rm=TRUE), 
+            age = age[1]) 
+
+qplot(age,correct, col=trial.type, geom=c("point"), 
+      stat="identity", position="dodge", data=mss) + 
+  geom_hline(aes(yintercept=.5), lty=2) + 
+  ylim(c(0,1)) + 
+  geom_smooth(se=FALSE)
+
+```
