@@ -7,15 +7,14 @@ source('~/Projects/Other/Ranalysis/useful_dplyr.R')
 #load libraries for data manipulation and graphing
 library(directlabels)
 library(xtable)
+library(magrittr)
 
 #splits ages into half-years
 split.ages <-function(x) {floor(x)}
 
 #Constants for window-of-interest analysis
-TEST_START <- 1
-TEST_END <- 3
-TRAIN_START <- 0
-TRAIN_END <- 2
+TEST_START <- 0
+TEST_END <- 4.5
 
 #Use color-brewer colors for graphing
 man_cols <- c("#e41a1c","#377eb8","#4daf4a",
@@ -36,7 +35,7 @@ data <- raw.data %>%
     aoi = as.character(factor(aoi, labels=c("Left", "Right","NA"))),
     time.step = time.step/60 - 2,
     gender = factor(gender,labels=c("Male","Female")),
-    age.grp = split.ages(age)) %>%
+    age.grp = factor(split.ages(age))) %>%
   filter(age >= 1)
 
 # Reshape data for subsequent analyses 
@@ -49,7 +48,7 @@ source('dot_graphs.R')
 source('statistical_models.R')
 
 # Reshape timecourse data for subequent analyses
-source('timecourse_data.R')
+source('timecourse_data_tab_comp.R')
 
 # Create timecourse graphs for paper
 source('timecourse_graphs.R')
