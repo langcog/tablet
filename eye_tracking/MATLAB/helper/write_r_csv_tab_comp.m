@@ -1,13 +1,7 @@
 function [] = write_r_csv_tab_comp(data,info)
 
 %write to csv
-f = 'tab_comp_r.csv';
-
-delete(f);
-
-fid = fopen(f,'w');
-fprintf(fid,'subj,age,gender,list.num,time.step,trial.type,trial.num,aoi\n');
-fclose(fid);
+fs = {'tab_comp_fam_r.csv','tab_comp_nov_r.csv'};
 
 for trialtype = 1:2
     
@@ -48,6 +42,11 @@ for trialtype = 1:2
 
     w_m(:,8) = reshape(m,[numel(m) 1]); %aoi
     
-    dlmwrite(f, w_m, '-append', 'delimiter',',');
+    w_m = array2table(w_m,'VariableNames',...
+        {'subj','age','gender','listNum','timeStep',...
+        'trialType','trialNum','aoi'});
+    w_m.subj = repmat((info.subid)',[size(m,2)*size(m,3) 1]);
+    
+    writetable(w_m,fs{trialtype});
     
 end
