@@ -25,10 +25,18 @@ man_cols <- c("#e41a1c","#377eb8","#4daf4a",
 ################################ LOADING DATA #################################
 ###############################################################################
 #read looking data
-raw.data <- read.csv("../MATLAB/tab_comp_r.csv",header=TRUE)
+raw.fam.data <- read.csv("../MATLAB/tab_comp_fam_r.csv",header=TRUE)
+raw.nov.data <- read.csv("../MATLAB/tab_comp_nov_r.csv",header=TRUE)
+
+raw.data <- rbind(raw.fam.data,raw.nov.data)
 
 data <- raw.data %>%
   #pre-process data values to be more English-readable
+  rename(trial.type = trialType,
+         list.num = listNum,
+         time.step = timeStep,
+         trial.num = trialNum,
+         sid = subj) %>%
   mutate(
     trial.type = factor(trial.type,
                         labels=c("Familiar", "Novel")),
