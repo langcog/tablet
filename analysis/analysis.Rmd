@@ -8,75 +8,161 @@ Tablet comparison script.
 
 Set up some functions. 
 
-```{r, echo=FALSE}
+```{r}
 rm(list=ls())
-## for bootstrapping 95% confidence intervals
-theta <- function(x,xdata,na.rm=T) {mean(xdata[x],na.rm=na.rm)}
-ci.low <- function(x,na.rm=T) {
-  mean(x,na.rm=na.rm) - quantile(bootstrap(1:length(x),1000,theta,x,na.rm=na.rm)$thetastar,.025,na.rm=na.rm)}
-ci.high <- function(x,na.rm=T) {
-  quantile(bootstrap(1:length(x),1000,theta,x,na.rm=na.rm)$thetastar,.975,na.rm=na.rm) - mean(x,na.rm=na.rm)}
-
-na.mean <- function(x) {mean(x,na.rm=T)}
-na.sum <- function(x) {sum(x,na.rm=T)}
-na.median <- function(x) {median(x,na.rm=T)}
-na.cor <- function(x) {cor(x,na.rm=T)}
-
-library(xtable)
-library(plyr)
-library(stringr)
-library(ggplot2)
-library(lme4)
-library(bootstrap)
-library(xtable)
-theme_set(theme_bw())
+source("~/Projects/R/Ranalysis/useful_dplyr.R")
 ```
 
-Load data and preliminaries.
+Reading in experimental data
+------
+
+Demographics. 
+```{r}
+tab.demo <- read.csv("~/Projects/tablet_norming/data/tablet_demographics.csv")
+tab.demo <- tab.demo %>% rename(subid = SID)
+
+story.demo <- read.csv("~/Projects/tablet_norming/data/story_demographics.csv")
+story.demo <- story.demo %>% rename(subid = SID)
+
+et.demo <- read.csv("~/Projects/tablet_norming/data/et_demographics.csv")
+et.demo <- et.demo %>% rename(subid = SID)
+```
+
+First read tablet.
 
 ```{r}
-tab <- read.csv("~/Projects/tablet_norming/data/tabletstudyresults.csv")
+tab <- read.csv("data/tabletstudyresults.csv")
 tab$reaction.time <- as.numeric(as.character(tab$reaction.time))
-tab$trial.type <- factor(tab$trial.type, c("rec","MEcontrol","MEexperimental"))
+tab$trial.type <- factor(tab$trial.type, 
+                         levels = c("rec","MEcontrol","MEexperimental"),
+                         labels = c("FAM-fam","FAM-nov","NOV-fam"))
 ```
 
-Now add demographics.
+Then read storybook.
 
 ```{r}
-demo <- read.csv("~/Projects/tablet_norming/data/tablet_demographics.csv")
-demo$age.group <- floor(demo$age)
-sum(demo$exclude)
-aggregate(subject.id ~ exclusion.crit, demo, length)
+story <- read.csv("data/storystudyresults.csv")
+story <- story %>% 
+  gather(trial, correct, ends_with(".Correct"), na.rm=FALSE) %>%
+  select(-starts_with("X")) %>%
+  mutate(trial = as.numeric(str_replace_all(str_replace(trial, "X", ""), ".Correct", "")))
+lists <- read.csv("data/lists.csv")
+
+story <- left_join(story, lists, by=c("List","trial"))
+
+story$trial.type <- factor(story$trial.type, 
+                         levels = c("familiar-familiar","FAMILIAR-novel",
+                                    "familiar-novel","filler"),
+                         labels = c("FAM-fam","FAM-nov","NOV-fam", "filler"))
+
 ```
 
-Merge, remove exclusions and fillers, and look at age distribution.
+Then read eye-tracking.
 
 ```{r}
-d <- merge(tab, demo)
-d <- subset(d, exclude == 0)
-d <- subset(d, trial.type != "filler")
+et <- read.csv("eye_tracking/R/eye.tracking.csv", row.names="X")
+et$trial.type <- factor(et$word.type, 
+                         levels = c("Familiar-Familiar","Familiar-Novel",
+                                    "Novel-Familiar"),
+                         labels = c("FAM-fam","FAM-nov","NOV-fam"))
 ```
 
-Demographics
-----
-How many participants do we have? 
+Merge these three together. This is quite ugly because of differing naming conventions across data files.
 
 ```{r}
-print(length(unique(d$subject.id)))
+et <- et %>% 
+  select(sid, trial.num, trial.type, rt, prop) %>%
+  rename(subid = sid, 
+         correct = prop)
 
-dems <- ddply(d, .(age.group,subject.id), summarise,
-              age = age[1],
-              male = gender[1] == "M")
-dems <- ddply(dems, .(age.group), summarise,
-      n = length(subject.id),
-      m.age = mean(age),
-      m.male = mean(male))
-xtable(dems)
+et <- left_join(et, et.demo, by="subid")
+et$condition  <- "eye-tracker"
+
+tab <- tab %>%
+  mutate(correct = response=="Y") %>%
+  select(subject.id, trial.number, trial.type, reaction.time, correct) %>%
+  rename(subid = subject.id, 
+         trial.num = trial.number, 
+         rt = reaction.time)
+
+tab <- left_join(tab, tab.demo)
+tab$condition  <- "tablet"
+
+story <- story %>%
+  select(SID, trial, trial.type, correct) %>%
+  rename(subid = SID, 
+         trial.num = trial)
+
+story <- left_join(story, story.demo)
+story$condition <- "storybook"
+
+d <- rbind_list(et, tab, story) %>%
+  mutate(age.grp = floor(age))
 ```
+
+Demographics and filtering
+--------------------------
+
+Filter for ages. 
+
+```{r}
+report <- function(x) {
+x %>%
+  group_by(subid, condition, age.grp) %>%
+  summarise(age = age[1],
+            sex = sex[1]) %>% 
+  group_by(condition, age.grp, add=FALSE) %>% 
+  summarise(n=n(), 
+            m.age = mean(age),
+            m.male = mean(sex=="male"))
+}
+
+d <- d %>% 
+  filter(age.grp > 0, age.grp < 5, !is.na(age.grp))       
+
+report(d)
+```
+
+Non-inclusion criteria that don't relate to methods.
+
+```{r}
+d %>% group_by(subid, condition, exclusion.crit) %>%
+  summarise(n = 1) %>%
+  group_by(condition, exclusion.crit, add=FALSE) %>%
+  summarise(n=sum(n)) 
+
+d <- d %>% 
+  filter(exclusion.crit != "lang", 
+         exclusion.crit != "dd")
+
+report(d)
+```
+
+Now, other exclusion criteria.
+
+```{r}
+d %>% 
+  group_by(subid, condition, exclusion.crit) %>%
+  summarise(n = 1) %>%
+  group_by(condition, exclusion.crit, add=FALSE) %>%
+  summarise(n= sum(n)) %>%
+  group_by(condition, add=FALSE) %>% 
+  mutate(prop = n/ sum(n))
+
+d <- d %>% 
+  filter(exclude == 0)
+
+report(d)
+```
+
+Data-based exclusions
+---------------------
 
 Did they finish?
 
 ```{r}
+qplot(trial.num, facets=~condition, data=d)
+
 d$trial.number <- as.numeric(as.character(d$trial.number))
 mst <- ddply(d, .(subject.id,age.group), summarise,
              max.trial=max(trial.number))
