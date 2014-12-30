@@ -8,7 +8,8 @@ PROP.MIN = .5
 data <- left_join(data,trial.codes) %>% 
   filter(time.step >= TEST_START,
          time.step <= TEST_END) %>%
-  group_by(list.num,word.type,age,age.grp,gender,sid,trial.num,trial.type,
+  group_by(list.num,word.type,age,age.grp,gender,sid,whole.trial.num,word,
+           trial.num,trial.type,
            time.step)%>%
   mutate(aoi = if(is.na(aoi) | is.na(target) | aoi == "NA") "NA"
          else if(aoi== target) "Target"
@@ -16,7 +17,7 @@ data <- left_join(data,trial.codes) %>%
 
 test.data <- data %>%
   filter(time.step >= RT.MIN) %>%
-  group_by(list.num,word.type,age,age.grp,gender,sid,trial.num,word.type)
+  group_by(list.num,word.type,age,age.grp,gender,sid,trial.num,whole.trial.num,word)
 
 test.rts <- test.data %>%
   filter(aoi == "Target") %>%
