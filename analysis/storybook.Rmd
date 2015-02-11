@@ -1,18 +1,12 @@
 ---
-  title: "TAB_COMP"
+title: "TAB_COMP"
 output: html_document
 ---
   
 Tablet comparison script. 
 ====
-  
-  
-  
-  FIXMES
-  
-  
-  
-  Set up some functions. 
+
+Set up some functions. 
 
 ```{r, echo=FALSE}
 rm(list=ls())

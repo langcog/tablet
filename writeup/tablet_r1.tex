@@ -12,7 +12,7 @@
 % \affiliation{~}
 \affiliation{Department of Psychology, Stanford University}
 
-\abstract{Mobile, touch-screen devices are increasingly ubiquitous in children's lives. The extensive use of such devices provides both a challenge and an opportunity for developmental psychologists. While more research is needed to understand the nature and consequences of young children's interactions with such devices, they nevertheless present an exciting opportunity for data collection. We describe a simple method for creating cross-platform, interactive tablet experiments using open web-based resources. We illustrate this method by collecting data from children 1--4 years old in a simple word-recognition paradigm and show that it yields reliable accuracy and reaction time data; we provide code for this experiment for the use of other researchers. Tablets should be considered as a viable method for collecting low-cost, well-controlled developmental data.}
+\abstract{Mobile, touch-screen devices are increasingly ubiquitous in children's lives. The extensive use of such devices provides both a challenge and an opportunity for developmental psychologists. While more research is needed to understand the nature and consequences of young children's interactions with such devices, they nevertheless present an exciting opportunity for data collection. We describe a simple method for creating cross-platform, interactive tablet experiments using open web-based resources. We illustrate this method by collecting data from children ages 1--5 years in a simple word-recognition paradigm. Tablet data yields reliable accuracy and reaction time data and compares favorably to in-person storybook and eye-tracking paradigms. Tablets should be considered as a viable method for collecting low-cost, well-controlled developmental data.}
 
 \shorttitle{Tablet-based Data Collection} 
 \rightheader{TABLET-BASED DATA COLLECTION}
@@ -32,25 +32,19 @@ Since Apple debuted the iPad in 2010, the ubiquity of personal tablets---interac
 
 Nevertheless, there are significant challenges involved in using tablets for research, especially for preschool children. These include the difficulty and potential costliness of developing custom applications (``apps'') for individual experiments, and technical problems with app distribution and cross-device compatibility. In addition---although some experimental tasks have been administered using touch screen computers and some standardized tasks have been ported to tablets---there is a general dearth of data confirming the reliability of tablets as a platform for data collection. Perhaps for these reasons, there are currently few published articles that have used tablets to collect developmental data. 
 
-The goal of the current article is to address these challenges. We begin by briefly reviewing research on the use of tablets by children. We then describe a method for creating tablet-based experiments using standard, freely-available web-development tools. Although this method requires some programming experience, it is significantly easier than developing tablet-native applications (e.g., apps that can be downloaded from the Apple App Store or Google Play platforms and are specific to a particular device) and has relatively few drawbacks from the research perspective. We show how this method can be used to implement a simple word-recognition experiment and report data from that experiment. Our data suggest that the tablet platform is an engaging method for data collection that, when used appropriately, can yield reliable accuracy and reaction time from young children. 
+The goal of the current article is to address these challenges. We begin by briefly reviewing research on the use of tablets by children. We then describe a method for creating tablet-based experiments using standard, freely-available web-development tools. Although this method requires some programming experience, it is significantly easier than developing tablet-native applications (e.g., apps that can be downloaded from the Apple App Store or Google Play platforms and are specific to a particular device). We next report data on an experiment comparing word-recognition accuracy and reaction time across tablet, eye-tracking, and behavioral data collection. Our findings suggest that the tablet platform is an engaging method for data collection that, when used appropriately, can yield reliable accuracy and reaction time from young children. 
 
 \section{Prior Work on Using Tablets with Children}
 
-The primary focus of research on tablets with children has not been on their use as a data-collection platform but rather the evaluation of their educational potential. The starting point for investigations of learning from tablets is the suggestion that children learn less from passive video viewing than they do from live demonstrations, a phenomenon known as the ``video deficit'' effect \cite<e.g.>{anderson2005,deloache2010}. The experiences offered by touch-screen devices may be distinct from passive viewing of television and computer screens, however. For example, \citeA{zack2009} found that 15-month-olds were able to object transfer knowledge learned via a touch-screen to a physical toy. Practice with interactive games may also benefit attention and motor control \cite{bavelier2010}, and more generally screen time with tablets can promote independence, opportunities for physical closeness, and feelings of fun and accomplishment \cite{rvachew2013}. The contingent feedback and individualization offered by mobile devices may thus make them a better medium for learning and engagement than traditional view-only screens. 
+Although tablets are becoming increasingly common in research, relatively little published research has compared them directly with other data collection modalities. One major exception to this statement, however, is the use of tablets in standardized psychological instruments. Publishers are increasingly creating tablet-specific versions of what used to be paper-and-pencil assessments; at time of writing, a number of instruments, including the WAIS \cite{wechsler2008}, CELF \cite{wiig2004}, PPVT \cite{dunn2007}, and many others are available from commercial publishers. The tablet modality assists experimenters and facilitates response logging, and the change in the paradigm is minimal. Thus, tablets can be used effectively for data collection with children, at least for older preschoolers in relatively straightforward and standardized paradigms. 
 
-One concern with children's performance using tablets is the accuracy of their motor control. Experience likely plays a substantial role in modulating the accuracy of interactions, especially for the youngest children, and some gestures are easier than others. \citeA{aziz2014} tested 2- to 5-year-olds in Malaysia and the United Kingdom on their ability to perform the seven most common touch gestures of iPads: tap, drag/slide, free rotate, drag and drop, pinch, spread, and flick. By age 2, children mastered the tap and drag/slide gestures, and by age 3, they could reliably produce all by the spread gesture. By age 4, all children performed all of the gestures. Our experiences confirm that even 1.5 -- 2-year-olds are able to learn to tap targets without too much difficulty.
+For younger children, the primary focus of research on tablets has not been on their use as a data-collection platform but rather the evaluation of their educational potential. The starting point for investigations of learning from tablets is the suggestion that children learn less from passive video viewing than they do from live demonstrations, a phenomenon known as the ``video deficit'' effect \cite<e.g.>{anderson2005,deloache2010}. The experiences offered by touch-screen devices may be distinct from passive viewing of television and computer screens, however. For example, \citeA{zack2009} found that 15-month-olds were able to object transfer knowledge learned via a touch-screen to a physical toy. Practice with interactive games may also benefit attention and motor control \cite{bavelier2010}, and more generally screen time with tablets can promote independence, opportunities for physical closeness, and feelings of fun and accomplishment \cite{rvachew2013}. The contingent feedback and individualization offered by mobile devices may thus make them a better medium for learning and engagement than traditional view-only screens, and these advantages may also increase their utility for data-acquisition.
 
+On the other hand, one concern with children's performance using tablets is the accuracy of their motor control. Experience likely plays a substantial role in modulating the accuracy of interactions, especially for the youngest children, and some gestures are easier than others. \citeA{aziz2014} tested 2- to 5-year-olds in Malaysia and the United Kingdom on their ability to perform the seven most common touch gestures of iPads: tap, drag/slide, free rotate, drag and drop, pinch, spread, and flick. By age 2, children mastered the tap and drag/slide gestures, and by age 3, they could reliably produce all by the spread gesture. By age 4, all children performed all of the gestures. Our experiences confirm that even 1.5 -- 2-year-olds are able to learn to tap targets without too much difficulty.
 
-While relatively little published research has made use of novel tablet-based tasks, there is an extensive literature that uses touch-screen computing 
+While relatively little published research has made use of novel tablet-based tasks, there is an extensive literature that has used lab-based touch-screen paradigms with children \cite<e.g.>{tallal1996,friend2003,sage2015,holloway2008}. This prior literature is important for calibrating our expectations from tablet-based paradigms. Nevertheless, several things differ between these touchscreen paradigms and tablets. First, touch screen paradigms are often conducted with relatively specialized equipment in a lab setting, while tablets can be used anywhere. Second, tablets are small enough to be held by the child, and generally require small motor movements; in contrast, touchscreens are typically somewhat distal and may require a full arm movement (potentially leading to fatigue over a longer testing session). Third, the increasing comfort and proficiency of even young children with tablets may lead them to be more comfortable with experiments conducted in this medium, in turn leading to better data. 
 
-Increasingly, publishers of standardized psychological instruments are creating tablet-specific versions of what used to be paper-and-pencil assessments. At time of writing, a number of instruments, including the WAIS \cite{wechsler2008}, CELF \cite{wiig2004}, PPVT \cite{dunn2007}, and many others are available from commercial publishers. 
-
-
-
-
-
-In sum, tablets are extremely engaging to children but designers of experiments for young children should take care to consider appropriate content and gesture capabilities for their target age group.
-
+In sum, tablets are extremely engaging to children, but designers of experiments for young children should take care to consider appropriate content and gesture capabilities for their target age group. In addition, more research is needed to understand how tablets compare with other data collection modalities. 
 
 \section{Why Collect Developmental Data With Tablets?}
 
@@ -124,15 +118,35 @@ To test the reliability and broad developmental applicability of our tablet meth
 \subsection{Methods}
 
 \subsubsection{Participants}                                                                                                                              
+%      condition age.grp  n    m.age    m.male
+% 1  eye-tracker       1 32 1.483390 0.4375000
+% 2  eye-tracker       2 25 2.502356 0.6400000
+% 3  eye-tracker       3 24 3.523174 0.7083333
+% 4  eye-tracker       4 19 4.540303 0.5789474
+% 5    storybook       1 23 1.596069 0.6086957
+% 6    storybook       2 30 2.448219 0.4000000
+% 7    storybook       3 23 3.482906 0.5652174
+% 8    storybook       4 23 4.479214 0.3913043
+% 9       tablet       1 25 1.685151 0.4800000
+% 10      tablet       2 26 2.467756 0.6153846
+% 11      tablet       3 26 3.559958 0.6923077
+% 12      tablet       4 24 4.516438 0.6250000
 
-%       exclusion.crit subject.id
-% 1                            87
-% 2                age          2
-% 3 could not complete          4
-% 4                 dd          1
-% 5              error          2
-% 6       interference          4
-% 7               lang          7
+   %   condition exclusion.crit  n
+% 1  eye-tracker                71
+% 2  eye-tracker   interference  4
+% 3  eye-tracker           lang 25
+% 4    storybook                73
+% 5    storybook             dd  1
+% 6    storybook   interference  4
+% 7    storybook           lang 16
+% 8    storybook  non-compliant  5
+% 9       tablet                86
+% 10      tablet             dd  1
+% 11      tablet          error  2
+% 12      tablet   interference  4
+% 13      tablet           lang  7
+% 14      tablet  non-compliant  1
 
 We recruited a sample of 86 children 1--5 years old from the floor of Children's Discovery Museum of San Jose. Demographics for these participants are shown in Table \ref{tab:demo}. An additional 18 children in the target age range were recruited but excluded from the sample for the following reasons: parent-reported English exposure less than our pre-specified criterion of 75\% (7), parent interference (4), issues with the iPad pre-training (4), experimenter error or technical issues (2), and self-reported developmental disability (1). 
 
@@ -165,6 +179,19 @@ We created a simple page to help children learn to tap appropriately on the iPad
 Experimental stimuli were then presented in one of two pseudorandom lists, in which trials (pairs of pictures) were counterbalanced for order and target side. The three trial types were (1) \emph{Familiar Word} trials, in which two familiar pictures were presented and children were asked to select the image that matched a familiar word; (2) \emph{Mutual Exclusivity (ME) Control} trials, in which a familiar and a novel image were presented and children were asked to select the image that matched a familiar word; and (3) \emph{ME Inference} trials, in which a familiar and a novel image were presented and children were asked to select the image that matched a novel word. The experiment had 28 trials in total (8 of each of the three trial types plus four fillers). 
 
 \subsection{Results}
+   %   condition age.grp  finished num.trials
+% 1  eye-tracker       1 0.2941176   19.00000
+% 2  eye-tracker       2 0.4736842   25.05263
+% 3  eye-tracker       3 0.8823529   27.23529
+% 4  eye-tracker       4 0.6250000   25.56250
+% 5    storybook       1 1.0000000   23.00000
+% 6    storybook       2 1.0000000   23.00000
+% 7    storybook       3 1.0000000   23.00000
+% 8    storybook       4 1.0000000   23.00000
+% 9       tablet       1 0.4444444   20.38889
+% 10      tablet       2 0.9090909   27.45455
+% 11      tablet       3 1.0000000   28.00000
+% 12      tablet       4 0.8636364   27.54545
 
 % \subsubsection{Task completion}
 
@@ -188,7 +215,7 @@ Children were overall very enthusiastic about the experiment. One-year-olds vari
 
 \begin{figure}[t] 
   \begin{center} 
-    \includegraphics[width=5in]{figures/accuracy.pdf} 
+    \includegraphics[width=6in]{figures/accuracyall.pdf} 
     \caption{\label{fig:accuracy} Accuracy in our word recognition task, plotted by age group and trial type (ME refers to mutual exclusivity; see text for more details). Dashed line shows chance performance. Error bars show 95\% confidence intervals, computed by non-parametric bootstrap. }
   \end{center} 
 \end{figure}
@@ -214,12 +241,12 @@ Our data thus support the appropriateness of the tablet-based method for childre
 
 
 
-\begin{figure}[t] 
-  \begin{center} 
-    \includegraphics[width=5in]{figures/rt_dist.pdf} 
-    \caption{\label{fig:rtdist} A histogram of reaction times across all participants. Red and blue curves show the best-fitting distributions found by a 2-component Gaussian mixture model, scaled for comparison to the histogram. Dashed lines show the cutoff values we adopted (0.5 and 4.0 s).}
-  \end{center} 
-\end{figure}
+% \begin{figure}[t] 
+%   \begin{center} 
+%     \includegraphics[width=5in]{figures/rt_dist.pdf} 
+%     \caption{\label{fig:rtdist} A histogram of reaction times across all participants. Red and blue curves show the best-fitting distributions found by a 2-component Gaussian mixture model, scaled for comparison to the histogram. Dashed lines show the cutoff values we adopted (0.5 and 4.0 s).}
+%   \end{center} 
+% \end{figure}
 
 We next turned to the reaction time data. Considering only reaction times for correct trials, we found a substantial skew in the reaction times we collected (Figure \ref{fig:rtdist}). This pattern appeared to be due to two clusters of reaction times: one larger, tighter cluster early on, representing immediate responding, and one broader slower cluster representing trials on which participants were unsure how to respond, looked to a parent, or otherwise deliberated for a substantial amount of time. In an exploratory analysis, we fit a Gaussian mixture model (using the \texttt{mclust} package in \texttt{R}) and found that the best BIC values were indeed produced by a two-cluster solution, which is shown in Figure \ref{fig:rtdist}. 
 
@@ -234,22 +261,66 @@ For further analysis, we excluded reaction times faster than 500 ms or slower th
 
 Older children were faster overall in our task, and ME inference trials were slower than both Familiar Word and ME Control trials for all groups except the one-year-olds (Figure \ref{fig:rt}). We again did not observe large numerical differences between Familiar Word and ME Control trials.\footnote{A linear mixed effects model fit to log-transformed reaction-time data showed a significant effect of trial number such that reaction times decrease over the course of the experiment ($\beta = .001$, $p = .04$), and three- and four-year-olds were significantly faster than one-year-olds ($\beta = -.19,~.26$, $p$s $<.005$). There were no main effects of trial type, but there were reliable slowdowns for ME Inference trials across the two-, three-, and four-year-olds ($\beta=.25,~.26,~.29$, all $p$s $< .0001$). ME control trials were also reliably faster for the four-year-olds ($\beta=-.13$, $p=.04$).} Experimenting with other reaction-time outlier exclusion processes did not qualitatively alter the pattern of results. Nevertheless, we recommend that investigators using this method carefully examine their distribution of reaction times, as averages can be heavily skewed by just a small number of very long RTs.
 
-% latex table generated in R 3.0.2 by xtable 1.7-3 package
-% Fri Aug  1 11:05:54 2014
-\begin{table}[t]
+% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Wed Feb 11 12:12:16 2015
+\begin{table}[ht]
 \centering
-\caption{\label{tab:reliability} Mean reliability values found by a bootstrap sample of random splits of the data from familiar word trials. Values marked SB are computed by the Spearman-Brown prediction formula.}
-\begin{tabular}{rcccc}
+\begin{tabular}{rrlrrr}
   \hline
-Age group & Accuracy & Reaction time & Accuracy (SB) & Reaction time (SB) \\ 
+ & age.grp & condition & n & raw.alpha & std.alpha \\ 
   \hline
-1-year-olds & 0.45 & 0.09 & 0.61 & 0.05 \\ 
-2-year-olds & 0.31 & 0.34 & 0.42 & 0.44 \\ 
-3-year-olds & -0.12 & 0.49 & -0.27 & 0.64 \\ 
-4-year-olds & 0.03 & 0.60 & 0.03 & 0.74 \\ 
+1 & 1.00 & eye-tracker & 7.65 & -0.66 & -0.98 \\ 
+  2 & 1.00 & storybook & 13.00 & 0.78 & 0.77 \\ 
+  3 & 1.00 & tablet & 11.78 & 0.46 & 0.45 \\ 
+  4 & 2.00 & eye-tracker & 11.61 & 0.70 & 0.74 \\ 
+  5 & 2.00 & storybook & 13.00 & 0.69 & 0.69 \\ 
+  6 & 2.00 & tablet & 16.05 & 0.65 & 0.64 \\ 
+  7 & 3.00 & eye-tracker & 12.88 & 0.58 & 0.58 \\ 
+  8 & 3.00 & storybook & 13.00 & 0.58 & 0.58 \\ 
+  9 & 3.00 & tablet & 15.83 & 0.07 & 0.06 \\ 
+  10 & 4.00 & eye-tracker & 11.25 & 0.44 & 0.33 \\ 
+  11 & 4.00 & storybook & 13.00 & -0.11 & -0.11 \\ 
+  12 & 4.00 & tablet & 15.45 & 0.48 & 0.47 \\ 
    \hline
 \end{tabular}
 \end{table}
+
+% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Wed Feb 11 12:13:34 2015
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrlrrr}
+  \hline
+ & age.grp & condition & n & alpha & std.alpha \\ 
+  \hline
+1 & 1.00 & eye-tracker & 4.47 & 0.86 & 0.88 \\ 
+  2 & 1.00 & tablet & 8.50 & 0.77 & 0.72 \\ 
+  3 & 2.00 & eye-tracker & 5.72 & 0.47 & 0.25 \\ 
+  4 & 2.00 & tablet & 14.77 & 0.72 & 0.69 \\ 
+  5 & 3.00 & eye-tracker & 6.12 & 0.56 & 0.60 \\ 
+  6 & 3.00 & tablet & 15.54 & 0.45 & 0.59 \\ 
+  7 & 4.00 & eye-tracker & 7.12 & 0.05 & 0.54 \\ 
+  8 & 4.00 & tablet & 15.09 & 0.31 & 0.77 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+% % latex table generated in R 3.0.2 by xtable 1.7-3 package
+% % Fri Aug  1 11:05:54 2014
+% \begin{table}[t]
+% \centering
+% \caption{\label{tab:reliability} Mean reliability values found by a bootstrap sample of random splits of the data from familiar word trials. Values marked SB are computed by the Spearman-Brown prediction formula.}
+% \begin{tabular}{rcccc}
+%   \hline
+% Age group & Accuracy & Reaction time & Accuracy (SB) & Reaction time (SB) \\ 
+%   \hline
+% 1-year-olds & 0.45 & 0.09 & 0.61 & 0.05 \\ 
+% 2-year-olds & 0.31 & 0.34 & 0.42 & 0.44 \\ 
+% 3-year-olds & -0.12 & 0.49 & -0.27 & 0.64 \\ 
+% 4-year-olds & 0.03 & 0.60 & 0.03 & 0.74 \\ 
+%    \hline
+% \end{tabular}
+% \end{table}
 
 Group-level developmental differences such as those described above do not necessarily signal a measure with high reliability. We computed split-half reliability coefficients for accuracy and reaction time based on splitting all trials using familiar words (both Familiar Word and ME Control trials) into two halves and computing the correlation between these two halves. To ensure the robustness of the statistic, we repeated this procedure with 1000 bootstrap replicates (different splits of the trials) and took the average value across these replicates. We also adjusted reliabilities using the Spearman-Brown prediction formula \cite{bartko1976} to estimate the overall reliability of the full sample of 16 items.
 
