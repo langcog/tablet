@@ -107,7 +107,7 @@ d <- rbind_list(et, tab, story) %>%
 Demographics and filtering
 --------------------------
 
-Filter for ages. 
+Report function.
 
 ```{r}
 report <- function(x) {
@@ -120,11 +120,14 @@ x %>%
             m.age = mean(age),
             m.male = mean(sex=="male"))
 }
+```
 
+Filter for ages and filler trials. 
+
+```{r}
 d <- d %>% 
-  filter(age.grp > 0, age.grp < 5, !is.na(age.grp))       
-
-report(d)
+  filter(age.grp > 0, age.grp < 5, !is.na(age.grp))     
+d <- d %>% filter(trial.type != "filler")
 ```
 
 Non-inclusion criteria that don't relate to methods.
@@ -135,11 +138,9 @@ d %>% group_by(subid, condition, exclusion.crit) %>%
   group_by(condition, exclusion.crit, add=FALSE) %>%
   summarise(n=sum(n)) 
 
-d <- d %>% 
+n <- d %>% 
   filter(exclusion.crit != "lang", 
          exclusion.crit != "dd")
-
-report(d)
 ```
 
 Now, other exclusion criteria.
@@ -156,9 +157,8 @@ d %>%
 d <- d %>% 
   filter(exclude == 0)
 
-report(d)
+xtable(report(d))
 
-d <- d %>% filter(trial.type != "filler")
 ```
 
 Data-based exclusions
@@ -204,12 +204,6 @@ qplot(rt/1000,
 #   geom_vline(xintercept=exp(m + 2*s)/1000, col="red",lty=2) + 
   scale_x_log10(breaks=c(1,2,5,10,20,50))
 
-# mean(d$reaction.time,na.rm=TRUE)
-# median(d$reaction.time,na.rm=TRUE)
-# exp(m-(2*s))
-# exp(m+(2*s))
-# mean(d$reaction.time > exp(m + 2*s) |
-#        d$reaction.time < exp(m - 2*s), na.rm=TRUE)
 ```
 
 Age effects:
@@ -221,58 +215,9 @@ ggplot(d) +
   facet_grid(condition~age.grp)
 ```
 
-Try mixture of gaussians. FIXME
+Prune excessive reaction times. (Arbitrary threshold). 
 
 ```{r}
-# library(mclust)
-# 
-# clusts <- Mclust(log(d$reaction.time)[!is.na(log(d$reaction.time))])
-# 
-# c1 <- data.frame(x = (exp(seq(6,10,.1))/1000),
-#                  y = dnorm(seq(6,10,.1),
-#                          mean = summary(clusts, parameter=TRUE)$mean[1],
-#                          sd = sqrt(summary(clusts, parameter=TRUE)$variance[1])))
-# c2 <- data.frame(x = (exp(seq(6,10,.1))/1000),
-#                  y = dnorm(seq(6,10,.1),
-#                          mean = summary(clusts, parameter=TRUE)$mean[2],
-#                          sd = sqrt(summary(clusts, parameter=TRUE)$variance[2])))
-# c1$y <- 1.8*mean(summary(clusts)$classification==1) * c1$y / sum(c1$y)
-# c2$y <- 1.8*mean(summary(clusts)$classification==2) * c2$y / sum(c2$y)
-# 
-# pdf("~/Projects/tablet_norming/writeup/figures/rt_dist.pdf",width=5,height=3)
-# ggplot(d) + 
-#   geom_bar(aes(x = reaction.time/1000, y = (..count..)/sum(..count..))) +
-#     scale_x_log10(breaks=c(.5, 1,2,5,10,20,50)) + 
-#   geom_line(aes(x=x,y=y),
-#             col="red",data=c1) + 
-#   geom_line(aes(x=x,y=y),
-#             col="blue",data=c2) + 
-#   ylab("Proportion of Values") + 
-#   xlab("Reaction Time (s)") + 
-#   geom_vline(xintercept=.5, lty=2) + 
-#   geom_vline(xintercept=4, lty=2)  
-# dev.off()
-# 
-# c1.top <- exp(summary(clusts, parameter=TRUE)$mean[1] + 
-#                 sqrt(summary(clusts, parameter=TRUE)$variance[1])*3)
-# 
-# c1.bottom <- exp(summary(clusts, parameter=TRUE)$mean[1] - 
-#                    sqrt(summary(clusts, parameter=TRUE)$variance[1])*3)
-
-```
-
-Now consider > 4s and < .5s:
-
-```{r}
-mean(d$rt > 4000 | d$rt < 500, na.rm=TRUE)
-
-```
-
-Do the pruning here.
-
-```{r}
-#d$reaction.time[d$reaction.time > exp(m + 2*s) |
-#                    d$reaction.time < exp(m - 2*s)] <- NA
 d$reaction.time[d$rt > 4000 |
                     d$rt < 500] <- NA
 
@@ -285,11 +230,15 @@ Actual analysis starts here
 Aggregation. 
 
 ```{r}
- mss <- d %>%
+mss <- d %>%
   group_by(subid, trial.type, age.grp, condition) %>%
   summarise(age=age[1],
             rt=mean(rt, na.rm=TRUE), 
             correct=mean(correct)) 
+
+mss$trial.type <- factor(mss$trial.type, 
+                        levels = c("FAM-fam","FAM-nov","NOV-fam"), 
+                        labels=c("Familiar Word","ME Control","ME Inference"))
 
 ms <- mss %>%
   group_by(trial.type, age.grp, condition, add=FALSE) %>%
@@ -304,8 +253,7 @@ ms <- mss %>%
 Accuracy as a barplot.
 
 ```{r}
-levels(msa$trial.type) <- c("Familiar Word","ME Control","ME Inference")
-pdf("~/Projects/tablet_norming/writeup/figures/accuracy_all.pdf",width=7,height=5)
+pdf("~/Projects/tablet_norming/writeup/figures/accuracy.pdf",width=7,height=5)
 qplot(age.grp, acc,
       fill=trial.type,
       ymin=acc-acc.cil,
@@ -314,11 +262,12 @@ qplot(age.grp, acc,
       geom=c("bar","linerange"),
       stat="identity",
       data=ms) + 
-  facet_grid(condition ~ trial.type) + 
+  facet_grid(condition ~ .) + 
   xlab("Age (Years)") + 
   ylab("Accuracy") + 
-  scale_fill_discrete(name="Trial Type") + 
-  geom_hline(yintercept=.5,lty=2)
+  geom_hline(yintercept=.5,lty=2) + 
+  scale_fill_discrete(name="Trial Type") 
+
 dev.off()
 ```
 
@@ -335,8 +284,6 @@ qplot(age, correct, col=trial.type, data=mss) +
 and RT:
 
 ```{r}
-ms$trial.type <- factor(ms$trial.type)
-levels(ms$trial.type) <- c("Familiar Word","ME Control","ME Inference")
 pdf("~/Projects/tablet_norming/writeup/figures/rt.pdf",width=7,height=4)
 qplot(age.grp, rt/1000,
       fill=trial.type,
@@ -390,30 +337,139 @@ qplot(age.grp, trials,
 Statistics 
 ----
 
+t-tests vs. chance.
+
+Accuracies for eye-tracker. 
+
 ```{r}
-rt.mod <- lmer(log(reaction.time) ~ trial.number + factor(age.group) * trial.type + 
-                 (1 | subject.id), 
-               data=d)
-summary(rt.mod)
-xtable(summary(rt.mod)$coef)
+t.test(mss$correct[mss$condition == "eye-tracker" & 
+                     mss$trial.type == "Familiar Word" & 
+                     mss$age.grp == 1] - .5)
+t.test(mss$correct[mss$condition == "eye-tracker" & 
+                     mss$trial.type == "ME Control" & 
+                     mss$age.grp == 1] - .5)
+t.test(mss$correct[mss$condition == "eye-tracker" & 
+                     mss$trial.type == "ME Inference" & 
+                     mss$age.grp == 1] - .5)
+t.test(mss$correct[mss$condition == "eye-tracker" & 
+                     mss$trial.type == "ME Inference" & 
+                     mss$age.grp == 2] - .5)
 ```
 
-and accuracy:
+Other accuracies.
 
 ```{r}
-d$acc <- d$response=="Y"
-acc.mod <- glmer(acc ~ factor(age.group) * trial.type + 
-                  (1 | subject.id), 
+t.test(mss$correct[mss$condition == "storybook" & 
+                     mss$trial.type == "Familiar Word" & 
+                     mss$age.grp == 1] - .5)
+t.test(mss$correct[mss$condition == "tablet" & 
+                     mss$trial.type == "Familiar Word" & 
+                     mss$age.grp == 1] - .5)
+t.test(mss$correct[mss$condition == "tablet" & 
+                     mss$trial.type == "ME Control" & 
+                     mss$age.grp == 1] - .5)
+```
+
+Accuracy model. 
+
+```{r}
+acc.mod <- glmer(correct ~ age * trial.type * condition + 
+                  (trial.type | subid), 
                 family="binomial",
-                data=d)
+                data=filter(d, condition != "eye-tracker"))
 summary(acc.mod)
-xtable(summary(acc.mod)$coef)
+```
+
+RT models. 
+
+```{r}
+rt.mod <- lmer(log(rt) ~ age * trial.type * condition + 
+                 (trial.type | subid), 
+               data=filter(d, condition != "storybook"))
+summary(rt.mod)
+
+et.rt.mod <- lmer(log(rt) ~ age * trial.type + 
+                 (trial.type | subid), 
+               data=filter(d, condition == "eye-tracker"))
+summary(et.rt.mod)
+
+tab.rt.mod <- lmer(log(rt) ~ age * trial.type + 
+                 (trial.type | subid), 
+               data=filter(d, condition == "tablet"))
+summary(tab.rt.mod)
+
+
 ```
 
 Reliability
 ----
 
-Fairest analysis -- split halves where 1 half is the odd-numbered Familiar trials and even numbered ME trials, and the other half the remaining trials Control trials.
+We compute crohnbach's alpha. This works well, as long as you do a lot of filtering of columns that have null observations in them (this is what the `get.frame` function does). 
+
+```{r}
+get.frame <- function(x) {
+  x <- as.data.frame(x)
+  non.null.cols <- apply(x, 2, function(x) {!all(is.na(x))})
+  x <- x[, non.null.cols]
+  return(x)
+}
+  
+acc.alphas <- d %>%
+  filter(trial.type != "NOV-fam", !is.na(correct)) %>%
+  select(subid, age.grp,  trial.num, condition, correct) %>%
+  group_by(age.grp, condition, subid) %>%
+  arrange(subid, trial.num) %>%
+  mutate(trial.order = str_c("t",as.character(1:length(trial.num))), 
+         n = length(trial.num)) %>%
+  select(-trial.num) %>%
+  spread(trial.order, correct) %>%
+  group_by(age.grp, condition,  add=FALSE) %>%
+  summarise(n = mean(n), 
+    raw.alpha = alpha(get.frame(cbind(t1, t2, t3, t4, t5, t6, t7, t8, 
+                                    t9, t10, t11, t12, t13, t14, 
+                                    t15, t16)), 
+                          na.rm=TRUE, delete=TRUE, 
+                          check.keys=FALSE)$total$raw_alpha,
+            std.alpha = alpha(get.frame(cbind(t1, t2, t3, t4, t5, t6, t7, t8, 
+                                    t9, t10, t11, t12, t13, t14, 
+                                    t15, t16)), 
+                          na.rm=TRUE, delete=TRUE, 
+                          check.keys=FALSE)$total$std.alpha)
+
+## no ME trials, no NA rts, no storbook (no rts collected)
+rt.alphas <- d %>%
+  filter(trial.type != "NOV-fam", !is.na(rt), 
+         condition != "storybook") %>% 
+  select(subid, age.grp,  trial.num, condition, rt) %>%
+  group_by(age.grp, condition, subid) %>%
+  arrange(subid, trial.num) %>%
+  mutate(trial.order = str_c("t",as.character(1:length(trial.num))), 
+         n = length(trial.num)) %>%
+  select(-trial.num) %>%
+  spread(trial.order, rt) %>%
+  group_by(age.grp, condition,  add=FALSE) %>%
+  summarise(n = mean(n),
+            alpha = alpha(get.frame(cbind(t1, t2, t3, t4, t5, t6, t7, t8, 
+                                          t9, t10, t11, t12, t13, t14, 
+                                          t15, t16)), 
+                          na.rm=TRUE, delete=TRUE, 
+                          check.keys=FALSE)$total$raw_alpha, 
+            std.alpha = alpha(get.frame(cbind(t1, t2, t3, t4, t5, t6, t7, t8, 
+                                    t9, t10, t11, t12, t13, t14, 
+                                    t15, t16)), 
+                          na.rm=TRUE, delete=TRUE, 
+                          check.keys=FALSE)$total$std.alpha)
+
+xtable(acc.alphas)
+xtable(rt.alphas)
+```
+
+
+Much prior reliability work
+---------------------------
+
+This split half thing is very unstable...
+
 
 ```{r}
 bytrial <- d %>%
@@ -561,89 +617,3 @@ qplot(age.grp, m,
 ```
 
 
-Another version where we compute Crohnbach's alpha and Guttman's G6:
-
-```{r}
-get.frame <- function(x) {
-  x <- as.data.frame(x)
-  non.null.cols <- apply(x, 2, function(x) {!all(is.na(x))})
-  x <- x[, non.null.cols]
-  return(x)
-}
-  
-acc.alphas <- d %>%
-  filter(trial.type != "NOV-fam", !is.na(correct)) %>%
-  select(subid, age.grp,  trial.num, condition, correct) %>%
-  group_by(age.grp, condition, subid) %>%
-  arrange(subid, trial.num) %>%
-  mutate(trial.order = str_c("t",as.character(1:length(trial.num))), 
-         n = length(trial.num)) %>%
-  select(-trial.num) %>%
-  spread(trial.order, correct) %>%
-  group_by(age.grp, condition,  add=FALSE) %>%
-  summarise(n = mean(n), 
-    raw.alpha = alpha(get.frame(cbind(t1, t2, t3, t4, t5, t6, t7, t8, 
-                                    t9, t10, t11, t12, t13, t14, 
-                                    t15, t16)), 
-                          na.rm=TRUE, delete=TRUE, 
-                          check.keys=FALSE)$total$raw_alpha,
-            std.alpha = alpha(get.frame(cbind(t1, t2, t3, t4, t5, t6, t7, t8, 
-                                    t9, t10, t11, t12, t13, t14, 
-                                    t15, t16)), 
-                          na.rm=TRUE, delete=TRUE, 
-                          check.keys=FALSE)$total$std.alpha)
-
-## no ME trials, no NA rts, no storbook (no rts collected)
-acc.rts <- d %>%
-  filter(trial.type != "NOV-fam", !is.na(rt), 
-         condition != "storybook") %>% 
-  select(subid, age.grp,  trial.num, condition, rt) %>%
-  group_by(age.grp, condition, subid) %>%
-  arrange(subid, trial.num) %>%
-  mutate(trial.order = str_c("t",as.character(1:length(trial.num))), 
-         n = length(trial.num)) %>%
-  select(-trial.num) %>%
-  spread(trial.order, rt) %>%
-  group_by(age.grp, condition,  add=FALSE) %>%
-  summarise(n = mean(n),
-            alpha = alpha(get.frame(cbind(t1, t2, t3, t4, t5, t6, t7, t8, 
-                                          t9, t10, t11, t12, t13, t14, 
-                                          t15, t16)), 
-                          na.rm=TRUE, delete=TRUE, 
-                          check.keys=FALSE)$total$raw_alpha, 
-            std.alpha = alpha(get.frame(cbind(t1, t2, t3, t4, t5, t6, t7, t8, 
-                                    t9, t10, t11, t12, t13, t14, 
-                                    t15, t16)), 
-                          na.rm=TRUE, delete=TRUE, 
-                          check.keys=FALSE)$total$std.alpha)
-
-```
-
-```{r}
-
-a <- d %>% 
-  filter(trial.type != "NOV-fam", !is.na(rt), condition != "storybook",
-         condition != "tablet", age.grp == 4) %>%
-  select(subid, age.grp,  trial.num, condition, rt) %>%
-  group_by(age.grp, condition, subid) %>%
-  arrange(subid, trial.num) %>%
-  mutate(trial.order = str_c("t",as.character(1:length(trial.num))), 
-         n = length(trial.num)) %>%
-  select(-trial.num) %>%
-  spread(trial.order, rt) %>%
-  group_by(age.grp, condition,  add=FALSE) 
-
-%>%
-  summarise(alpha = alpha(as.data.frame(cbind(t1, t2, t3, t4, t5, t6, t7, t8, 
-                                    t9, t10, t11, t12, t13, t14, 
-                                    t15, t16)), 
-                          na.rm=TRUE, delete=TRUE, 
-                          check.keys=FALSE)$total$raw_alpha)
-
-
-b <- with(a, as.data.frame(cbind(t1, t2, t3, t4, t5, t6, t7, t8, 
-                                    t9, t10)))
-alpha(b, na.rm=TRUE, delete=TRUE, 
-      check.keys=FALSE)
-
-```
