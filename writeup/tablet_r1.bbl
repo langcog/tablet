@@ -1,0 +1,1047 @@
+\newcommand{\noopsort}[1]{} \newcommand{\printfirst}[2]{#1}
+  \newcommand{\singleletter}[1]{#1} \newcommand{\switchargs}[2]{#2#1}
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{%
+Anderson%
+\ \BBA{} Pempek%
+}{%
+Anderson%
+\ \BBA{} Pempek%
+}{%
+{\protect\APACyear{2005}}%
+}]{%
+anderson2005}%
+\APACinsertmetastar{%
+anderson2005}%
+Anderson, D\BPBI R.%
+\BCBT{}\ \BBA{} Pempek, T\BPBI A.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2005}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Television and very young children}{Television and very
+  young children}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{American Behavioral Scientist}{48}{5}{505--522}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Aslin%
+}{%
+Aslin%
+}{%
+{\protect\APACyear{2007}}%
+}]{%
+aslin2007}%
+\APACinsertmetastar{%
+aslin2007}%
+Aslin, R\BPBI N.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{What's in a look?}{What's in a look?}\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Developmental Science}{10}{1}{48--53}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Aziz%
+, Sin%
+, Batmaz%
+, Stone%
+\BCBL{}\ \BBA{} Chung%
+}{%
+Aziz%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2014}}%
+}]{%
+aziz2014}%
+\APACinsertmetastar{%
+aziz2014}%
+Aziz, N\BPBI A\BPBI A.%
+, Sin, N\BPBI S\BPBI M.%
+, Batmaz, F.%
+, Stone, R.%
+\BCBL{}\ \BBA{} Chung, P\BPBI W\BPBI H.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Selection of Touch Gestures for Childrens Applications:
+  Repeated Experiment to Increase Reliability}{Selection of touch gestures for
+  childrens applications: Repeated experiment to increase
+  reliability}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{International Journal of Advanced Computer Science and
+  Applications}{4}{5}{97--102}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Bavelier%
+, Green%
+\BCBL{}\ \BBA{} Dye%
+}{%
+Bavelier%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2010}}%
+}]{%
+bavelier2010}%
+\APACinsertmetastar{%
+bavelier2010}%
+Bavelier, D.%
+, Green, C\BPBI S.%
+\BCBL{}\ \BBA{} Dye, M\BPBI W.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Children, wired: for better and for worse}{Children,
+  wired: for better and for worse}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Neuron}{67}{5}{692--701}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Bertucco%
+\ \BBA{} Sanger%
+}{%
+Bertucco%
+\ \BBA{} Sanger%
+}{%
+{\protect\APACyear{2013}}%
+}]{%
+bertucco2013}%
+\APACinsertmetastar{%
+bertucco2013}%
+Bertucco, M.%
+\BCBT{}\ \BBA{} Sanger, T\BPBI D.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Speed-Accuracy Testing on the Apple iPad Provides a
+  Quantitative Test of Upper Extremity Motor Performance in Children with
+  Dystonia}{Speed-accuracy testing on the apple ipad provides a quantitative
+  test of upper extremity motor performance in children with dystonia}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Journal of Child Neurology}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Bion%
+, Borovsky%
+\BCBL{}\ \BBA{} Fernald%
+}{%
+Bion%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2013}}%
+}]{%
+bion2013}%
+\APACinsertmetastar{%
+bion2013}%
+Bion, R\BPBI A.%
+, Borovsky, A.%
+\BCBL{}\ \BBA{} Fernald, A.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Fast mapping, slow learning: Disambiguation of novel
+  word--object mappings in relation to vocabulary learning at 18, 24, and 30
+  months}{Fast mapping, slow learning: Disambiguation of novel word--object
+  mappings in relation to vocabulary learning at 18, 24, and 30 months}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Cognition}{126}{1}{39--53}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Cardon%
+}{%
+Cardon%
+}{%
+{\protect\APACyear{2012}}%
+}]{%
+cardon2012}%
+\APACinsertmetastar{%
+cardon2012}%
+Cardon, T\BPBI A.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Teaching caregivers to implement video modeling imitation
+  training via iPad for their children with autism}{Teaching caregivers to
+  implement video modeling imitation training via ipad for their children with
+  autism}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Research in Autism Spectrum
+  Disorders}{6}{4}{1389--1400}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Chai%
+, Vail%
+\BCBL{}\ \BBA{} Ayres%
+}{%
+Chai%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{in press}}%
+}]{%
+chai2014}%
+\APACinsertmetastar{%
+chai2014}%
+Chai, Z.%
+, Vail, C\BPBI O.%
+\BCBL{}\ \BBA{} Ayres, K\BPBI M.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{in press}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{{Using an iPad Application to Promote Early Literacy
+  Development in Young Children With Disabilities}}{{Using an iPad Application
+  to Promote Early Literacy Development in Young Children With
+  Disabilities}}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{The Journal of Special Education}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Couse%
+\ \BBA{} Chen%
+}{%
+Couse%
+\ \BBA{} Chen%
+}{%
+{\protect\APACyear{2010}}%
+}]{%
+couse2010}%
+\APACinsertmetastar{%
+couse2010}%
+Couse, L\BPBI J.%
+\BCBT{}\ \BBA{} Chen, D\BPBI W.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{A tablet computer for young children? {E}xploring its
+  viability for early childhood education}{A tablet computer for young
+  children? {E}xploring its viability for early childhood education}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Journal of Research on Technology in
+  Education}{43}{}{75--96}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Crump%
+, McDonnell%
+\BCBL{}\ \BBA{} Gureckis%
+}{%
+Crump%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2013}}%
+}]{%
+crump2013}%
+\APACinsertmetastar{%
+crump2013}%
+Crump, M\BPBI J.%
+, McDonnell, J\BPBI V.%
+\BCBL{}\ \BBA{} Gureckis, T\BPBI M.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Evaluating {Amazon's Mechanical Turk} as a Tool for
+  Experimental Behavioral Research}{Evaluating {Amazon's Mechanical Turk} as a
+  tool for experimental behavioral research}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{PLOS ONE}{8}{3}{e57410}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Deligianni%
+, Senju%
+, Gergely%
+\BCBL{}\ \BBA{} Csibra%
+}{%
+Deligianni%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2011}}%
+}]{%
+deligianni2011}%
+\APACinsertmetastar{%
+deligianni2011}%
+Deligianni, F.%
+, Senju, A.%
+, Gergely, G.%
+\BCBL{}\ \BBA{} Csibra, G.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Automated gaze-contingent objects elicit orientation
+  following in 8-month-old infants.}{Automated gaze-contingent objects elicit
+  orientation following in 8-month-old infants.}\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Developmental Psychology}{47}{6}{1499}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+DeLoache%
+\ \protect\BOthers{.}}{%
+DeLoache%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2010}}%
+}]{%
+deloache2010}%
+\APACinsertmetastar{%
+deloache2010}%
+DeLoache, J\BPBI S.%
+, Chiong, C.%
+, Sherman, K.%
+, Islam, N.%
+, Vanderborght, M.%
+, Troseth, G\BPBI L.%
+\BCBL{}\ \BOthersPeriod{.}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Do babies learn from baby media?}{Do babies learn from
+  baby media?}\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Psychological Science}{21}{}{1570--1574}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Diesendruck%
+\ \BBA{} Markson%
+}{%
+Diesendruck%
+\ \BBA{} Markson%
+}{%
+{\protect\APACyear{2001}}%
+}]{%
+diesendruck2001}%
+\APACinsertmetastar{%
+diesendruck2001}%
+Diesendruck, G.%
+\BCBT{}\ \BBA{} Markson, L.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Children's avoidance of lexical overlap: a pragmatic
+  account.}{Children's avoidance of lexical overlap: a pragmatic
+  account.}\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Developmental Psychology}{37}{5}{630}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Dunn%
+\ \BBA{} Dunn%
+}{%
+Dunn%
+\ \BBA{} Dunn%
+}{%
+{\protect\APACyear{2007}}%
+}]{%
+dunn2007}%
+\APACinsertmetastar{%
+dunn2007}%
+Dunn, L\BPBI M.%
+\BCBT{}\ \BBA{} Dunn, D\BPBI M.%
+%
+\unskip\
+\newblock
+\APACrefYear{2007}.
+\newblock
+\APACrefbtitle{PPVT-4: Peabody picture vocabulary test}{Ppvt-4: Peabody picture
+  vocabulary test}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Fenson%
+\ \protect\BOthers{.}}{%
+Fenson%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2007}}%
+}]{%
+fenson2007}%
+\APACinsertmetastar{%
+fenson2007}%
+Fenson, L.%
+, Bates, E.%
+, Dale, P\BPBI S.%
+, Marchman, V\BPBI A.%
+, Reznick, J\BPBI S.%
+\BCBL{}\ \BBA{} Thal, D\BPBI J.%
+%
+\unskip\
+\newblock
+\APACrefYear{2007}.
+\newblock
+\APACrefbtitle{{MacArthur-Bates Communicative Development Inventories: User's
+  Guide and Technical Manual}}{{MacArthur-Bates Communicative Development
+  Inventories: User's Guide and Technical Manual}}.
+\newblock
+\APACaddressPublisher{}{Paul H. Brookes Publishing Company}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Fenson%
+\ \protect\BOthers{.}}{%
+Fenson%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{1994}}%
+}]{%
+fenson1994}%
+\APACinsertmetastar{%
+fenson1994}%
+Fenson, L.%
+, Dale, P.%
+, Reznick, J.%
+, Bates, E.%
+, Thal, D.%
+, Pethick, S.%
+\BCBL{}\ \BOthersPeriod{.}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1994}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Variability in early communicative
+  development}{Variability in early communicative development}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Monographs of the Society for Research in Child
+  Development}{59}{5}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Fernald%
+, Perfors%
+\BCBL{}\ \BBA{} Marchman%
+}{%
+Fernald%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2006}}%
+}]{%
+fernald2006}%
+\APACinsertmetastar{%
+fernald2006}%
+Fernald, A.%
+, Perfors, A.%
+\BCBL{}\ \BBA{} Marchman, V\BPBI A.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2006}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Picking up speed in understanding: Speech processing
+  efficiency and vocabulary growth across the 2nd year.}{Picking up speed in
+  understanding: Speech processing efficiency and vocabulary growth across the
+  2nd year.}\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Developmental Psychology}{42}{1}{98}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Fernald%
+, Pinto%
+, Swingley%
+, Weinbergy%
+\BCBL{}\ \BBA{} McRoberts%
+}{%
+Fernald%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{1998}}%
+}]{%
+fernald1998}%
+\APACinsertmetastar{%
+fernald1998}%
+Fernald, A.%
+, Pinto, J.%
+, Swingley, D.%
+, Weinbergy, A.%
+\BCBL{}\ \BBA{} McRoberts, G.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1998}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Rapid gains in speed of verbal processing by infants in
+  the 2nd year}{Rapid gains in speed of verbal processing by infants in the 2nd
+  year}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Psychological Science}{9}{3}{228}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Fernald%
+, Zangl%
+, Portillo%
+\BCBL{}\ \BBA{} Marchman%
+}{%
+Fernald%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2008}}%
+}]{%
+fernald2008}%
+\APACinsertmetastar{%
+fernald2008}%
+Fernald, A.%
+, Zangl, R.%
+, Portillo, A\BPBI L.%
+\BCBL{}\ \BBA{} Marchman, V\BPBI A.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Looking while listening: Using eye movements to monitor
+  spoken language}{Looking while listening: Using eye movements to monitor
+  spoken language}.\BBCQ{}
+\newblock
+\BIn{} I\BPBI A.~Sekerina, E\BPBI M.~Fern{\'a}ndez\BCBL{}\ \BBA{} H.~Clahsen\
+  (\BEDS), \APACrefbtitle{Developmental psycholinguistics: On-line methods in
+  children's language processing}{Developmental psycholinguistics: On-line
+  methods in children's language processing}\ (\BPGS\ 113--132).
+\newblock
+\APACaddressPublisher{Amsterdam, Netherlands}{John Benjamins Publishing Co}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Frank%
+}{%
+Frank%
+}{%
+{\protect\APACyear{2013}}%
+}]{%
+frankblogpost}%
+\APACinsertmetastar{%
+frankblogpost}%
+Frank, M\BPBI C.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+\APACrefbtitle{{iPad experiments for toddlers}.}{{iPad experiments for
+  toddlers}.}
+\newblock
+ \begin{APACrefURL}
+  \url{http://babieslearninglanguage.blogspot.com/2013/09/\\ipad-experiments-f%
+or-toddlers.html} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Frank%
+, Goodman%
+\BCBL{}\ \BBA{} Tenenbaum%
+}{%
+Frank%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2009}}%
+}]{%
+frank2009}%
+\APACinsertmetastar{%
+frank2009}%
+Frank, M\BPBI C.%
+, Goodman, N\BPBI D.%
+\BCBL{}\ \BBA{} Tenenbaum, J\BPBI B.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Using speakers' referential intentions to model early
+  cross-situational word learning}{Using speakers' referential intentions to
+  model early cross-situational word learning}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Psychological Science}{20}{}{578--585}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Friend%
+\ \BBA{} Keplinger%
+}{%
+Friend%
+\ \BBA{} Keplinger%
+}{%
+{\protect\APACyear{2003}}%
+}]{%
+friend2003}%
+\APACinsertmetastar{%
+friend2003}%
+Friend, M.%
+\BCBT{}\ \BBA{} Keplinger, M.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2003}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{An infant-based assessment of early lexicon
+  acquisition}{An infant-based assessment of early lexicon acquisition}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Behavior Research Methods, Instruments, \&
+  Computers}{35}{2}{302--309}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Gredeb{\"a}ck%
+, Johnson%
+\BCBL{}\ \BBA{} Hofsten%
+}{%
+Gredeb{\"a}ck%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2009}}%
+}]{%
+gredeback2009}%
+\APACinsertmetastar{%
+gredeback2009}%
+Gredeb{\"a}ck, G.%
+, Johnson, S.%
+\BCBL{}\ \BBA{} Hofsten, C. von.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Eye tracking in infancy research}{Eye tracking in infancy
+  research}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Developmental Neuropsychology}{35}{1}{1--19}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Holloway%
+\ \BBA{} Ansari%
+}{%
+Holloway%
+\ \BBA{} Ansari%
+}{%
+{\protect\APACyear{2008}}%
+}]{%
+holloway2008}%
+\APACinsertmetastar{%
+holloway2008}%
+Holloway, I\BPBI D.%
+\BCBT{}\ \BBA{} Ansari, D.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Domain-specific and domain-general changes in children's
+  development of number comparison}{Domain-specific and domain-general changes
+  in children's development of number comparison}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Developmental Science}{11}{5}{644--649}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Jaeger%
+}{%
+Jaeger%
+}{%
+{\protect\APACyear{2008}}%
+}]{%
+jaeger2008}%
+\APACinsertmetastar{%
+jaeger2008}%
+Jaeger, T\BPBI F.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{{Categorical data analysis: Away from ANOVAs
+  (transformation or not) and towards logit mixed models}}{{Categorical data
+  analysis: Away from ANOVAs (transformation or not) and towards logit mixed
+  models}}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Journal of Memory and Language}{59}{4}{434--446}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Marchman%
+\ \BBA{} Fernald%
+}{%
+Marchman%
+\ \BBA{} Fernald%
+}{%
+{\protect\APACyear{2008}}%
+}]{%
+marchman2008}%
+\APACinsertmetastar{%
+marchman2008}%
+Marchman, V\BPBI A.%
+\BCBT{}\ \BBA{} Fernald, A.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Speed of word recognition and vocabulary knowledge in
+  infancy predict cognitive and language outcomes in later childhood}{Speed of
+  word recognition and vocabulary knowledge in infancy predict cognitive and
+  language outcomes in later childhood}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Developmental science}{11}{3}{F9--F16}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Markman%
+\ \BBA{} Wachtel%
+}{%
+Markman%
+\ \BBA{} Wachtel%
+}{%
+{\protect\APACyear{1988}}%
+}]{%
+markman1988}%
+\APACinsertmetastar{%
+markman1988}%
+Markman, E\BPBI M.%
+\BCBT{}\ \BBA{} Wachtel, G\BPBI F.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1988}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Children's use of mutual exclusivity to constrain the
+  meanings of words}{Children's use of mutual exclusivity to constrain the
+  meanings of words}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Cognitive Psychology}{20}{}{121--157}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Markman%
+, Wasow%
+\BCBL{}\ \BBA{} Hansen%
+}{%
+Markman%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2003}}%
+}]{%
+markman2003}%
+\APACinsertmetastar{%
+markman2003}%
+Markman, E\BPBI M.%
+, Wasow, J.%
+\BCBL{}\ \BBA{} Hansen, M.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2003}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Use of the mutual exclusivity assumption by young word
+  learners}{Use of the mutual exclusivity assumption by young word
+  learners}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Cognitive Psychology}{47}{3}{241--275}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Paolacci%
+, Chandler%
+\BCBL{}\ \BBA{} Ipeirotis%
+}{%
+Paolacci%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2010}}%
+}]{%
+paolacci2010}%
+\APACinsertmetastar{%
+paolacci2010}%
+Paolacci, G.%
+, Chandler, J.%
+\BCBL{}\ \BBA{} Ipeirotis, P\BPBI G.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Running experiments on Amazon Mechanical Turk}{Running
+  experiments on amazon mechanical turk}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Judgment and Decision Making}{5}{5}{411--419}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Rideout%
+}{%
+Rideout%
+}{%
+{\protect\APACyear{2014}}%
+}]{%
+rideout2014}%
+\APACinsertmetastar{%
+rideout2014}%
+Rideout, V.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Learning at home: {F}amilies' educational media use in
+  {A}merica}{Learning at home: {F}amilies' educational media use in
+  {A}merica}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{New York: The Joan Ganz Cooney Center at Sesame
+  Workshop}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Rvachew%
+}{%
+Rvachew%
+}{%
+{\protect\APACyear{2014}}%
+}]{%
+rvachew2013}%
+\APACinsertmetastar{%
+rvachew2013}%
+Rvachew, S.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{March}{}.
+\newblock
+\APACrefbtitle{Are Baby Videos Bad for Babies?}{Are baby videos bad for
+  babies?}
+\newblock
+ \begin{APACrefURL}
+  \url{http://digitalmediaprojectforchildren.wordpress.com/2013/\\09/22/are-ba%
+by-videos-bad-for-babies/} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Sage%
+\ \BBA{} Baldwin%
+}{%
+Sage%
+\ \BBA{} Baldwin%
+}{%
+{\protect\APACyear{2015}}%
+}]{%
+sage2015}%
+\APACinsertmetastar{%
+sage2015}%
+Sage, K\BPBI D.%
+\BCBT{}\ \BBA{} Baldwin, D.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Childrens Use of Self-Paced Slideshows: An Extension of
+  the Video Deficit Effect?}{Childrens use of self-paced slideshows: An
+  extension of the video deficit effect?}\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Journal of Research in Childhood
+  Education}{29}{1}{90--114}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Santos%
+}{%
+Santos%
+}{%
+{\protect\APACyear{1999}}%
+}]{%
+santos1999}%
+\APACinsertmetastar{%
+santos1999}%
+Santos, J\BPBI R\BPBI A.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1999}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Cronbachs alpha: A tool for assessing the reliability
+  of scales}{Cronbachs alpha: A tool for assessing the reliability of
+  scales}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{Journal of extension}{37}{2}{1--5}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Shuler%
+, Levine%
+\BCBL{}\ \BBA{} Ree%
+}{%
+Shuler%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2012}}%
+}]{%
+shuler2012}%
+\APACinsertmetastar{%
+shuler2012}%
+Shuler, C.%
+, Levine, Z.%
+\BCBL{}\ \BBA{} Ree, J.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{{iLearn II: An analysis of the education category of
+  Apples app store}}{{iLearn II: An analysis of the education category of
+  Apples app store}}.\BBCQ{}
+\newblock
+\APACaddressPublisher{New York}{The Joan Ganz Cooney Center at Sesame
+  Workshop}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Sternberg%
+}{%
+Sternberg%
+}{%
+{\protect\APACyear{1969}}%
+}]{%
+sternberg1969}%
+\APACinsertmetastar{%
+sternberg1969}%
+Sternberg, S.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1969}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Memory-scanning: Mental processes revealed by
+  reaction-time experiments}{Memory-scanning: Mental processes revealed by
+  reaction-time experiments}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{American Scientist}{}{}{421--457}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Waddington%
+\ \protect\BOthers{.}}{%
+Waddington%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2014}}%
+}]{%
+waddington2014}%
+\APACinsertmetastar{%
+waddington2014}%
+Waddington, H.%
+, Sigafoos, J.%
+, Lancioni, G\BPBI E.%
+, OReilly, M\BPBI F.%
+, Meer, L. van~der%
+, Carnett, A.%
+\BCBL{}\ \BOthersPeriod{.}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Three children with autism spectrum disorder learn to
+  perform a three-step communication sequence using an i{P}ad-based
+  speech-generating device}{Three children with autism spectrum disorder learn
+  to perform a three-step communication sequence using an i{P}ad-based
+  speech-generating device}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{International Journal of Developmental
+  Neuroscience}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Wechsler%
+}{%
+Wechsler%
+}{%
+{\protect\APACyear{2008}}%
+}]{%
+wechsler2008}%
+\APACinsertmetastar{%
+wechsler2008}%
+Wechsler, D.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Wechsler adult intelligence scale--Fourth Edition
+  (WAIS--IV)}{Wechsler adult intelligence scale--fourth edition
+  (wais--iv)}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{San Antonio, TX: NCS Pearson}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Wiig%
+, Secord%
+\BCBL{}\ \BBA{} Semel%
+}{%
+Wiig%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2004}}%
+}]{%
+wiig2004}%
+\APACinsertmetastar{%
+wiig2004}%
+Wiig, E\BPBI H.%
+, Secord, W.%
+\BCBL{}\ \BBA{} Semel, E\BPBI M.%
+%
+\unskip\
+\newblock
+\APACrefYear{2004}.
+\newblock
+\APACrefbtitle{CELF Preschool 2: Clinical Evaluation of Language Fundamentals
+  Preschool}{Celf preschool 2: Clinical evaluation of language fundamentals
+  preschool}.
+\newblock
+\APACaddressPublisher{}{Pearson/PsychCorp}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem[\protect\citeauthoryear{%
+Zack%
+, Barr%
+, Gerhardstein%
+, Dickerson%
+\BCBL{}\ \BBA{} Meltzoff%
+}{%
+Zack%
+\ \protect\BOthers{.}}{%
+{\protect\APACyear{2009}}%
+}]{%
+zack2009}%
+\APACinsertmetastar{%
+zack2009}%
+Zack, E.%
+, Barr, R.%
+, Gerhardstein, P.%
+, Dickerson, K.%
+\BCBL{}\ \BBA{} Meltzoff, A\BPBI N.%
+%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+\BBOQ{}\APACrefatitle{Infant imitation from television using novel touch screen
+  technology}{Infant imitation from television using novel touch screen
+  technology}.\BBCQ{}
+\newblock
+\APACjournalVolNumPages{British Journal of Developmental
+  Psychology}{27}{1}{13--26}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
