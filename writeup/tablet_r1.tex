@@ -44,7 +44,7 @@ The accuracy of young children's motor control poses a concern about their perfo
 
 While relatively little published research has made use of novel tablet-based tasks, there is an extensive literature that has used lab-based touch screen paradigms with children \cite<e.g.>{friend2003,holloway2008, sage2015}. This prior literature is important for calibrating our expectations about what paradigms may be ported successfully to tablets, but it is likely to be a conservative estimate for several reasons. First, touch screen paradigms are often conducted with relatively specialized equipment in a lab setting, while tablets can be used anywhere. Second, tablets are small enough to be held by the child, and generally require small motor movements; in contrast, touch screens are typically on a desk or mounted on a wall and may require a full arm movement (potentially leading to fatigue over a longer testing session). Third, the increasing comfort and proficiency of even young children with tablets may lead them to be more comfortable with experiments conducted in this medium, in turn leading to better data.
 
-In sum, tablet experiments for young children requires age-appropriate calibration of gesture and content complexity, they are an extremely engaging and promising experimental modality. 
+In sum, while tablet experiments for young children requires age-appropriate calibration of gesture and content complexity, they are an extremely engaging and promising experimental modality. 
 
 % In addition, more research is needed to understand how tablets compare with other data collection modalities. 
 
@@ -192,28 +192,44 @@ Group-level developmental differences above do not necessarily signal a measure 
 
 \section{Limitations of Tablets}
 
-While the evidence presented above suggests that tablets can be a powerful and flexible data collection modality for young children, there are nevertheless a number of limitations, both to our method and to the use of tablets more generally. 
+%While the evidence presented above suggests that tablets can be a powerful and flexible data collection modality for young children, there are nevertheless a number of limitations, both to our method and to the use of tablets more generally. 
 
-\paragraph{Limitations of our method}
+The evidence presented above suggests that the tablet-based data collection replicates behavioral patterns observed in other modalities with comparable reliability for young children. There are nevertheless a number of limitations, both to our method and to the use of tablets more generally. 
 
-In our view, the specific method we presented here has three primary limitations. First, it requires internet connectivity. For experiments in the field or in public places, this requirement may mean that other techniques are more appropriate. Second, it relies on a web-based development ecosystem that includes server-side technologies like PHP and client-side technologies including HTML, CSS, and JavaScript. While these open tools are well-documented and relatively easy to master, setting up these experiments nevertheless requires some technical orientation. If a lab is already hiring a programmer, it might be appropriate to build a native app rather than a web-based one, as we have specified here. Third, there are cases where having a robust, native app might lead to better performance, especially when an experiment requires extensive media or animation, use of the tablet's camera, or large-scale data transfer.
+\paragraph{Limitations of our method for data collection with tablets}
+
+In our view, the specific web-based method we presented here has three primary limitations. First, it requires internet connectivity. For experiments in the field or in public places, this requirement may mean that other techniques are more appropriate. Second, it relies on a web-based development ecosystem that includes server-side technologies like PHP and client-side technologies including HTML, CSS, and JavaScript. While these open tools are well-documented and relatively easy to master, setting up these experiments nevertheless requires some technical orientation. If a lab is already hiring a programmer, it might be appropriate to build a native app rather than a web-based one, as we have specified here. Third, there are cases where having a robust, native app might lead to better performance, especially when an experiment requires extensive media or animation, use of the tablet's camera, or large-scale data transfer.  For these reasons, data collection with a native app may be better suited for some projects.
 
 \paragraph{Limitations of tablets more generally}
 
-Tablets more generally also have a number of limitations that make them suitable for many but not all data-collection opportunities. Below we list a number of limitations or qualifications on the use of this technology more broadly.
+Tablets more generally also have a number of limitations that make them suitable for many but not all data-collection opportunities. Below we consider three classes of limitations: participant variability in  experience with tablets, limitations of measurement, and limitations associated with the novelty of the method.
 
-\begin{itemize}
-\item If children have not interacted with a tablet before, care must be taken to familiarize children with the device prior to data collection. 
-\item Population-level comparisons of data collected with tablets may be problematic if the populations have differential levels of prior practice with tablets. 
-\item As when using other methods that yield reaction times, care must be taken in the analysis to establish a priori procedures for the detection and removal of outliers; otherwise, analyses will be subject to post-hoc bias based on data cleaning choices. 
-\item Tablet-based experiments require some technical expertise to implement and hence can be slower for initial piloting than traditional behavioral methods. 
-\item The length or sophistication of the paradigms that can be implemented on tablets is still unknown and will require future work. 
-\item Although eye-tracking did not yield more reliable data in our comparison, for the youngest children, it is likely that well-tailored eye-tracking experiments will yield more reliable measurements \cite{fernald2006}. 
-\item Reaction time measurements on the tablet appear reliable in the data we collected, but validation of the precision of reaction time recording will require more substantial technical efforts \cite<cf.>{crump2013}. In particular, it is likely that the precision of reaction times will vary somewhat from device to device, perhaps making tablets unsuited for paradigms which yield small time differences and which require very fast reactions.
-\item While storage and transmission of fully-anonymized data on our web server has been approved by our institutional review board, researchers should consult with their local IRBs to understand the issues that can arise in electronic data collection. We recommend that researchers never collect names or other identifying information in their tablet apps---instead, such information should be stored separately and more securely if at all.
-\end{itemize}
+First, performance while interacting with a tablet depends to some degree  on children's prior experience with the tablet. Children who have prior experience may be better practiced at the motor skills necessary for indicating their responses. Thus, if children have not interacted with a tablet before, care must be taken to familiarize children with the device prior to data collection. There may also be population-level differences in experience with tablets, making cross-population comparisons of data collected with tablets potentially difficult.
 
-In sum, though tablets are a powerful tool, they are not suitable for every application; care should be taken to consider these limitations prior to beginning paradigm development. 
+Second, there are a number of limitations associated with measurement when using a tablet for data collection.  Reaction time measurements on the tablet appear reliable in the data we collected, but validation of the precision of reaction time recording will require more substantial technical efforts \cite<cf.>{crump2013}. In particular, it is likely that the precision of reaction times will vary somewhat from device to device, perhaps making tablets unsuited for paradigms which yield small time differences and which require very fast reactions. More generally, although eye-tracking did not yield more reliable data in our comparison, for the youngest children, it is likely that well-tailored eye-tracking experiments will yield more reliable measurements \cite{fernald2006}. 
+
+Third, because data collection with a tablet is a relatively new method, there are several limitations associated with its novelty. One issue is that the length or sophistication of the paradigms that can be implemented on tablets is still unknown. A second issue is related to  ethical concerns of electronic data collection. While storage and transmission of fully-anonymized data on our web server has been approved by our institutional review board, researchers should consult with their local IRBs to understand the issues that can arise in electronic data collection. We recommend that researchers never collect names or other identifying information in their tablet apps---instead, such information should be stored separately and more securely if at all. Finally, tablet-based experiments require some technical expertise to implement (either as a web-based or native app) and hence can be slower for initial piloting than traditional behavioral methods. However, while these features of the tablet are limiting, they may be mitigated as tablet-based data collection becomes more widely used.
+
+In sum, tablets are a powerful tool, but they are not suitable for every application; care should be taken to consider these limitations prior to beginning paradigm development. 
+
+
+%Tablets more generally also have a number of limitations that make them suitable for many but not all data-collection opportunities. Below we list a number of limitations or qualifications on the use of this technology more broadly.
+
+
+
+%
+%\begin{itemize}
+%\item If children have not interacted with a tablet before, care must be taken to familiarize children with the device prior to data collection. 
+%\item Population-level comparisons of data collected with tablets may be problematic if the populations have differential levels of prior practice with tablets. 
+%\item As when using other methods that yield reaction times, care must be taken in the analysis to establish a priori procedures for the detection and removal of outliers; otherwise, analyses will be subject to post-hoc bias based on data cleaning choices. 
+%\item Tablet-based experiments require some technical expertise to implement (either as a web-based or native app) and hence can be slower for initial piloting than traditional behavioral methods. 
+%\item The length or sophistication of the paradigms that can be implemented on tablets is still unknown and will require future work. 
+%\item Although eye-tracking did not yield more reliable data in our comparison, for the youngest children, it is likely that well-tailored eye-tracking experiments will yield more reliable measurements \cite{fernald2006}. 
+%\item Reaction time measurements on the tablet appear reliable in the data we collected, but validation of the precision of reaction time recording will require more substantial technical efforts \cite<cf.>{crump2013}. In particular, it is likely that the precision of reaction times will vary somewhat from device to device, perhaps making tablets unsuited for paradigms which yield small time differences and which require very fast reactions.
+%\item While storage and transmission of fully-anonymized data on our web server has been approved by our institutional review board, researchers should consult with their local IRBs to understand the issues that can arise in electronic data collection. We recommend that researchers never collect names or other identifying information in their tablet apps---instead, such information should be stored separately and more securely if at all.
+%\end{itemize}
+%
+%In sum, though tablets are a powerful tool, they are not suitable for every application; care should be taken to consider these limitations prior to beginning paradigm development. 
 
 \section{Conclusions} 
 
