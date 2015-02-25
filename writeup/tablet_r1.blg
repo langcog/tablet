@@ -1,0 +1,63 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.7)
+The top-level auxiliary file: tablet_r1.aux
+The style file: apacite.bst
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Database file #1: tablet.bib
+Warning--entry type for "frankblogpost" isn't style-file defined
+--line 307 of file tablet.bib
+Warning--entry type for "rvachew2013" isn't style-file defined
+--line 369 of file tablet.bib
+apacite.bst [2007/09/03 v4.00 APA bibliography style]
+Warning--No publisher in dunn2007
+Warning--No address in dunn2007
+Warning--No address in fenson2007
+`booktitle' is a missing field, not a string, for entry shuler2012
+while executing---line 5217 of file apacite.bst
+ptr=1, stack=
+
+---the literal stack isn't empty for entry shuler2012
+while executing---line 5217 of file apacite.bst
+Warning--No address in wiig2004
+You've used 39 entries,
+            6345 wiz_defined-function locations,
+            1407 strings with 17108 characters,
+and the built_in function-call counts, 78315 in all, are:
+= -- 9556
+> -- 681
+< -- 4013
++ -- 4278
+- -- 78
+* -- 5242
+:= -- 14814
+add.period$ -- 156
+call.type$ -- 39
+change.case$ -- 198
+chr.to.int$ -- 0
+cite$ -- 82
+duplicate$ -- 2124
+empty$ -- 2925
+format.name$ -- 1175
+if$ -- 14481
+int.to.chr$ -- 0
+int.to.str$ -- 78
+missing$ -- 0
+newline$ -- 953
+num.names$ -- 314
+pop$ -- 1092
+preamble$ -- 2
+purify$ -- 158
+quote$ -- 0
+skip$ -- 4888
+stack$ -- 0
+substring$ -- 4672
+swap$ -- 1202
+text.length$ -- 86
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 3392
+warning$ -- 4
+while$ -- 401
+width$ -- 0
+write$ -- 1230
+(There were 2 error messages)
