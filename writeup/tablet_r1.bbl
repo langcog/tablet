@@ -155,9 +155,9 @@ Bion, R\BPBI A.%
 \APACrefYearMonthDay{2013}{}{}.
 \newblock
 \BBOQ{}\APACrefatitle{Fast mapping, slow learning: Disambiguation of novel
-  word--object mappings in relation to vocabulary learning at 18, 24, and
-  30months}{Fast mapping, slow learning: Disambiguation of novel word--object
-  mappings in relation to vocabulary learning at 18, 24, and 30months}.\BBCQ{}
+  word--object mappings in relation to vocabulary learning at 18, 24, and 30
+  months}{Fast mapping, slow learning: Disambiguation of novel word--object
+  mappings in relation to vocabulary learning at 18, 24, and 30 months}.\BBCQ{}
 \newblock
 \APACjournalVolNumPages{Cognition}{126}{1}{39--53}.
 \PrintBackRefs{\CurrentBib}
@@ -370,8 +370,8 @@ Dunn, L\BPBI M.%
 \newblock
 \APACrefYear{2007}.
 \newblock
-\APACrefbtitle{PPVT-4: Peabody picture vocabulary test}{Ppvt-4: Peabody picture
-  vocabulary test}.
+\APACrefbtitle{{PPVT}-4: Peabody picture vocabulary test}{{PPVT}-4: Peabody
+  picture vocabulary test}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem[\protect\citeauthoryear{%
@@ -700,7 +700,7 @@ Marchman, V\BPBI A.%
   word recognition and vocabulary knowledge in infancy predict cognitive and
   language outcomes in later childhood}.\BBCQ{}
 \newblock
-\APACjournalVolNumPages{Developmental science}{11}{3}{F9--F16}.
+\APACjournalVolNumPages{Developmental Science}{11}{3}{F9--F16}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem[\protect\citeauthoryear{%
@@ -877,7 +877,7 @@ Santos, J\BPBI R\BPBI A.%
   of scales}{Cronbachs alpha: A tool for assessing the reliability of
   scales}.\BBCQ{}
 \newblock
-\APACjournalVolNumPages{Journal of extension}{37}{2}{1--5}.
+\APACjournalVolNumPages{Journal of Extension}{37}{2}{1--5}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem[\protect\citeauthoryear{%
