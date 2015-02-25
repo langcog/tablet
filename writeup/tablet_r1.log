@@ -1,18 +1,12 @@
-This is pdfTeXk, Version 3.1415926-1.40.9 (Web2C 7.5.7) (format=pdflatex 2008.8.22)  24 FEB 2015 16:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  24 FEB 2015 19:50
 entering extended mode
-\write18 enabled.
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **tablet_r1.tex
 (./tablet_r1.tex
-LaTeX2e <2005/12/01>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, german-x-2008-06-18, ngerman-x-2008-06-18, ancientgreek, ibycus, ar
-abic, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danish, dutc
-h, esperanto, estonian, farsi, finnish, french, galician, german, ngerman, mono
-greek, greek, hungarian, icelandic, indonesian, interlingua, irish, italian, la
-tin, mongolian, mongolian2a, bokmal, nynorsk, polish, portuguese, romanian, rus
-sian, sanskrit, serbian, slovak, slovenian, spanish, swedish, turkish, ukenglis
-h, ukrainian, uppersorbian, welsh, loaded.
+LaTeX2e <2014/05/01>
+Babel <3.9k> and hyphenation patterns for 78 languages loaded.
 (./apa2.cls
 
 LaTeX Warning: You have requested document class `apa2',
@@ -23,10 +17,10 @@ Document Class: apa 2008/12/09 American Psychological Association format v1.3.4
 
 Class apa Warning: apacite not loaded -- User may load BibLaTeX.
 
-(/usr/local/texlive/2008/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
-(/usr/local/texlive/2008/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -56,7 +50,7 @@ File: size11.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
 \gr@boxwidth=\skip54
 \gr@boxheight=\skip55
 
-(/usr/local/texlive/2008/texmf-dist/tex/latex/tools/bm.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup4
 \symboldletters=\mathgroup5
@@ -66,9 +60,9 @@ LaTeX Info: Redefining \bm on input line 203.
 )
 \c@appendix=\count88
 )
-(/usr/local/texlive/2008/texmf-dist/tex/latex/ltxmisc/url.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
-Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 ) (./apacite2.sty
 
 LaTeX Warning: You have requested package `apacite2',
@@ -81,37 +75,44 @@ Package: apacite 2012/02/25 v6.01 APA citation
 \bibparsep=\skip58
 \bibitemsep=\skip59
 \biblabelsep=\skip60
-) (/usr/local/texlive/2008/texmf-dist/tex/latex/amsfonts/amssymb.sty
-Package: amssymb 2002/01/22 v2.2d
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(/usr/local/texlive/2008/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2001/10/25 v2.2f
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks14
 \symAMSa=\mathgroup7
 \symAMSb=\mathgroup8
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 132.
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(/usr/local/texlive/2008/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/04/25 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2008/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/05/08 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
 )
-(/usr/local/texlive/2008/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2008/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/usr/local/texlive/2008/texmf/tex/latex/config/graphics.cfg
-File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 90.
+Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(/usr/local/texlive/2008/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2008/07/16 v0.04k Graphics/color for pdfTeX
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
 \Gread@gobject=\count90
 ))
 \Gin@req@height=\dimen103
@@ -132,14 +133,16 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
- (/usr/local/texlive/2008/texmf-dist/tex/latex/apa/english.apa
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/apa/english.apa
 File: english.apa 2006/01/01
 )
 \c@maskedRefs=\count91
- (/usr/local/texlive/2008/texmf-dist/tex/latex/apacite/english.apc
-File: english.apc 2007/09/03 v4.00 apacite language file
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/apacite/english.apc
+File: english.apc 2013/07/21 v6.03 apacite language file
+LaTeX Info: Redefining \BPBI on input line 129.
+LaTeX Info: Redefining \BHBI on input line 130.
 )
-(/usr/local/texlive/2008/texmf-dist/tex/context/base/supp-pdf.tex
+(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count92
 \scratchdimen=\dimen105
@@ -150,37 +153,91 @@ File: english.apc 2007/09/03 v4.00 apacite language file
 \MPscratchCnt=\count95
 \MPscratchDim=\dimen106
 \MPnumerator=\count96
+\makeMPintoPDFobject=\count97
 \everyMPtoPDFconversion=\toks17
-) [1{/usr/local/texlive/2008/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+) (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+[1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-[2]
-Missing character: There is no â in font cmr10!
-Missing character: There is no € in font cmr10!
-Missing character: There is no “ in font cmr10!
- [3] [4] [5] [6] [7]
-LaTeX Font Info:    Try loading font information for U+msa on input line 69.
+[2] [3] [4] [5] [6] [7]
+LaTeX Font Info:    Try loading font information for U+msa on input line 70.
 
-(/usr/local/texlive/2008/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2002/01/19 v2.2g AMS font definitions
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 69.
+LaTeX Font Info:    Try loading font information for U+msb on input line 70.
 
-(/usr/local/texlive/2008/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2002/01/19 v2.2g AMS font definitions
-) [8]
-<figures/diagram.pdf, id=35, 601.75694pt x 493.083pt>
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+<figures/diagram.pdf, id=29, 601.75694pt x 493.083pt>
 File: figures/diagram.pdf Graphic file (type pdf)
 
-<use figures/diagram.pdf> [9 <./figures/diagram.pdf>] [10] [11] [12] [13]
-<figures/accuracy.pdf, id=133, 505.89pt x 361.35pt>
+<use figures/diagram.pdf>
+Package pdftex.def Info: figures/diagram.pdf used on input line 79.
+(pdftex.def)             Requested size: 325.215pt x 266.47903pt.
+ [8] [9 <./figures/diagram.pdf>] [10] [11] [12]
+[13] <figures/accuracy.pdf, id=134, 505.89pt x 361.35pt>
 File: figures/accuracy.pdf Graphic file (type pdf)
- <use figures/accuracy.pdf>
-[14] <figures/rt.pdf, id=137, 505.89pt x 289.08pt>
+
+<use figures/accuracy.pdf>
+Package pdftex.def Info: figures/accuracy.pdf used on input line 148.
+(pdftex.def)             Requested size: 361.34999pt x 258.10966pt.
+ [14] <figures/rt.pdf, id=138, 505.89pt x 289.08pt>
 File: figures/rt.pdf Graphic file (type pdf)
- <use figures/rt.pdf>
-[15 <./figures/accuracy.pdf>] [16 <./figures/rt.pdf>] [17] [18] [19] [20]
-[21] (./tablet_r1.bbl
+
+<use figures/rt.pdf>
+Package pdftex.def Info: figures/rt.pdf used on input line 159.
+(pdftex.def)             Requested size: 361.34999pt x 206.48772pt.
+ [15 <./figures/accuracy.pdf>] [16 <./figures/rt.pdf>]
+[17] [18] [19] [20] [21] (./tablet_r1.bbl
 Missing character: There is no Â in font cmr10!
 Missing character: There is no ’ in font cmr10!
  [22] [23] [24]
@@ -188,29 +245,32 @@ Missing character: There is no Â in font cmr10!
 Missing character: There is no ’ in font cmr10!
 Missing character: There is no Â in font cmr10!
 Missing character: There is no ’ in font cmr10!
-) [25] [26] [27] [28] [29] [30] [31]
-(./tablet_r1.aux) ) 
+) [25] [26] [27]
+[28] [29] [30] [31] (./tablet_r1.aux) ) 
 Here is how much of TeX's memory you used:
- 2261 strings out of 493886
- 27965 string characters out of 1151099
- 88540 words of memory out of 3000000
- 5512 multiletter control sequences out of 10000+50000
- 15784 words of font info for 59 fonts, out of 3000000 for 5000
- 714 hyphenation exceptions out of 8191
- 29i,9n,24p,1378b,325s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/c
-mbx10.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmmi10.pfb
-></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmmi8.pfb></usr/loc
-al/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmr10.pfb></usr/local/texlive
-/2008/texmf-dist/fonts/type1/bluesky/cm/cmr6.pfb></usr/local/texlive/2008/texmf
--dist/fonts/type1/bluesky/cm/cmr8.pfb></usr/local/texlive/2008/texmf-dist/fonts
-/type1/bluesky/cm/cmr9.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/blue
-sky/cm/cmsy10.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cm
-ti10.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmtt10.pfb>
-</usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmtt9.pfb>
-Output written on tablet_r1.pdf (31 pages, 397975 bytes).
+ 2846 strings out of 493117
+ 37903 string characters out of 6135433
+ 106998 words of memory out of 5000000
+ 6253 multiletter control sequences out of 15000+600000
+ 15766 words of font info for 59 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 37i,9n,26p,1378b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2014/texmf-dist/font
+s/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2014/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt9.pfb>
+Output written on tablet_r1.pdf (31 pages, 447631 bytes).
 PDF statistics:
- 242 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 131072)
+ 245 PDF objects out of 1000 (max. 8388607)
+ 164 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
