@@ -616,4 +616,33 @@ qplot(age.grp, m,
   xlab("Age Group")
 ```
 
+Individual differences
+----------------------
+
+```{r}
+d$trials.consol <- revalue(factor(d$trial.type), 
+                           c("FAM-fam"="familiar",
+                             "FAM-nov"="familiar",
+                             "NOV-fam"="me"))
+rs.rt <- d %>%
+  group_by(subid, trials.consol, age.grp, condition) %>%
+  summarise(rt=mean(rt, na.rm=TRUE), 
+            correct=mean(correct)) %>%
+  group_by(condition, age.grp, subid) %>%
+  select(-correct) %>%
+  spread(trials.consol, rt) %>%
+  group_by(condition, age.grp) %>%
+  summarise(r = cor(familiar, me, use="pairwise.complete.obs"))
+            
+rs.acc <- d %>%
+  group_by(subid, trials.consol, age.grp, condition) %>%
+  summarise(rt=mean(rt, na.rm=TRUE), 
+            correct=mean(correct)) %>%
+  group_by(condition, age.grp, subid) %>%
+  select(-rt) %>%
+  spread(trials.consol, correct) %>%
+  group_by(condition, age.grp) %>%
+  summarise(r = cor(familiar, me, use="pairwise.complete.obs"))
+s
+```
 
